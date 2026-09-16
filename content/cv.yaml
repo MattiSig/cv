@@ -1,4 +1,4 @@
-# Source of truth for /cv. Everything marked TODO is a placeholder to replace.
+# Source of truth for /cv.
 name: Matthías Sigurbjörnsson
 title: Senior developer & CTO
 summary: >-
@@ -63,11 +63,13 @@ education:
 
 skills:
   - label: Languages
-    items: [Go, TypeScript, SQL]
+    items: [Go, TypeScript, C#, SQL]
+  - label: Frontend
+    items: [React, ASP.NET Web Forms]
   - label: Platforms
-    items: [GCP, Railway, Docker, Postgres]
+    items: [GCP, Azure, Railway, Docker, Postgres, Octopus Deploy]
   - label: Leadership
-    items: [TODO]
+    items: [Tech leadership, Platform architecture, Cost optimisation, Product strategy with executives, CI/CD ownership, Security hardening]
 
 awards:
   - title: Code for Course challenge winner, Digi.me DataHack
