@@ -13,8 +13,8 @@ projects:
     period: 2026 – now
     stack: [Go, TypeScript, Postgres, Railway]
     featured: true
-    image: /static/img/snaelda/cafe.webp
-    image_alt: A sample café website drafted by Snælda, in Icelandic
+    image: /static/img/snaelda/snaelda-io.webp
+    image_alt: The snaelda.io landing page, captured 2026-09-16
   # - slug: example
   #   name: Example
   #   tagline: One line.
