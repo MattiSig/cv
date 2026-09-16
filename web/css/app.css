@@ -80,7 +80,8 @@
   .link:hover { text-decoration-color: var(--accent); }
 
   .nav-link { color: var(--fg); text-decoration: none; }
-  .logo { display: block; flex: none; }
+  /* inline-block so an ancestor link's underline does not run under the mark */
+  .logo { display: inline-block; margin-right: 1ch; font-weight: 700; letter-spacing: -0.05em; }
   .nav-link:hover, .nav-link[aria-current="page"] { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
   .nav-link[aria-current="page"] { text-decoration-color: var(--accent); }
 

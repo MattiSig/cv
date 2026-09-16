@@ -1,7 +1,7 @@
 {{define "nav"}}
 <header class="print-hidden border-b border-rule">
   <nav class="mx-auto flex w-full max-w-[84ch] items-center justify-between gap-[2ch] px-[2ch] py-half" aria-label="Main">
-    <a href="/" class="nav-link flex items-center gap-[1ch] font-bold" {{if eq .Path "/"}}aria-current="page"{{end}}>{{template "logo" .}}<span>mattisig</span></a>
+    <a href="/" class="nav-link font-bold" {{if eq .Path "/"}}aria-current="page"{{end}}>{{template "logo" .}}mattisig</a>
     <ul class="flex items-center gap-[2ch] sm:gap-[3ch]">
       {{range $item := navItems}}
       <li><a href="{{$item.Href}}" class="nav-link" {{if hasPrefix $.Path $item.Href}}aria-current="page"{{end}}>{{$item.Label}}</a></li>
