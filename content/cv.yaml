@@ -47,8 +47,8 @@ experience:
       - Tech lead for Bakvörður, owning the product's engineering as a B2B SaaS.
       - Secured tenant isolation across the multi-tenant platform.
       - Refactored broken workflows and led the rewrite of the platform's next iteration.
-      - Built all CI/CD pipelines and moved the stack from on-premise Windows servers to Azure, with Octopus Deploy handling multi-server releases.
-    stack: [TypeScript, Azure, Octopus Deploy]
+      - Built all CI/CD pipelines and moved the stack from Windows servers to Azure. One main workflow built the release, installed the deployment agent on each server, and swapped the assets in.
+    stack: [TypeScript, Azure]
 
 education:
   - school: Háskóli Íslands (University of Iceland)
