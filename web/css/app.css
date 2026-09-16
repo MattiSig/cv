@@ -80,8 +80,10 @@
   .link:hover { text-decoration-color: var(--accent); }
 
   .nav-link { color: var(--fg); text-decoration: none; }
-  /* inline-block so an ancestor link's underline does not run under the mark */
-  .logo { display: inline-block; margin-right: 1ch; font-weight: 700; letter-spacing: -0.05em; }
+  /* The mark: a shell prompt set in the font, one line tall, a touch larger than body text. */
+  .logo { display: inline-block; font-size: 1.25rem; line-height: var(--line); font-weight: 700; letter-spacing: -0.06em; text-decoration: none; color: var(--fg); }
+  .logo-chevron { color: var(--fg); }
+  .logo-cursor { color: var(--accent); }
   .nav-link:hover, .nav-link[aria-current="page"] { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
   .nav-link[aria-current="page"] { text-decoration-color: var(--accent); }
 
