@@ -20,7 +20,7 @@ Success means a visitor reads a post through, looks at Snælda or another projec
 
 ## Positioning
 
-Hands-on engineering leader: a CTO / head-of-engineering who still writes production code. The site itself is the proof. It is one Go binary serving `html/template` pages, with no JavaScript framework, built with the same taste applied to the products he leads. Go advocacy is a stated conviction, not a slogan.
+Hands-on engineering leader who still writes production code. The owner is CTO at Ventla International AB as of 2026-09-16, but that title has not been announced externally; the site says Tech Lead until the owner says otherwise. Do not publish "CTO" anywhere on the site before then. The site itself is the proof. It is one Go binary serving `html/template` pages, with no JavaScript framework, built with the same taste applied to the products he leads. Go advocacy is a stated conviction, not a slogan.
 
 ## Operating Context
 
