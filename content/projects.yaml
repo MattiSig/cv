@@ -36,6 +36,18 @@ projects:
     stack: [Next.js, Vercel]
     image: /static/img/thssarch.com.webp
     image_alt: The thssarch.com landing page, captured 2026-09-16
+  - slug: katbjo
+    name: Katrín Björnsdóttir, biologist
+    tagline: Academic site for a tundra ecologist.
+    description: >-
+      CV and publications for a biologist studying how tundra ecosystems respond to climate
+      change. Plain HTML and CSS on GitHub Pages. I wrote it.
+    url: https://katbjo.github.io/
+    repo: https://github.com/katbjo/katbjo.github.io
+    role: Built
+    stack: [HTML, CSS, GitHub Pages]
+    image: /static/img/katbjo.github.io.webp
+    image_alt: The katbjo.github.io landing page, captured 2026-09-16
   # - slug: example
   #   name: Example
   #   tagline: One line.
