@@ -23,6 +23,7 @@ projects:
       and host it.
     url: https://cabin-thingvellir.com
     role: Built and host
+    period: "2024"
     stack: [Next.js, Railway]
     image: /static/img/cabin-thingvellir.com.webp
     image_alt: The cabin-thingvellir.com landing page, captured 2026-09-16
