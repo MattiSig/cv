@@ -4,3 +4,6 @@ web/static/css/app.css
 # Impeccable ships a native binary and a local hook manifest; neither belongs in git.
 .claude/skills/impeccable/scripts/bin/
 .claude/settings.local.json
+# Impeccable live-mode session state stays local.
+.impeccable/config.local.json
+.impeccable/live/inject-journal.json
