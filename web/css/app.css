@@ -80,6 +80,7 @@
   .link:hover { text-decoration-color: var(--accent); }
 
   .nav-link { color: var(--fg); text-decoration: none; }
+  .logo { display: block; flex: none; }
   .nav-link:hover, .nav-link[aria-current="page"] { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
   .nav-link[aria-current="page"] { text-decoration-color: var(--accent); }
 
