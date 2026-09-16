@@ -28,11 +28,13 @@ projects:
     image_alt: The cabin-thingvellir.com landing page, captured 2026-09-16
   - slug: thssarch
     name: Þórunn Sigurrós, architect
-    tagline: Portfolio site for an Icelandic architect.
+    tagline: Portfolio site for my sister, an architect.
     description: >-
-      Project galleries of architecture and illustration work. I wrote it and host it.
+      Project galleries of architecture and illustration work, built so she had a web presence
+      while looking for opportunities. I wrote it and host it.
     url: https://thssarch.com
     role: Built and host
+    period: "2023"
     stack: [Next.js, Vercel]
     image: /static/img/thssarch.com.webp
     image_alt: The thssarch.com landing page, captured 2026-09-16
