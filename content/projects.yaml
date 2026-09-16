@@ -48,6 +48,7 @@ projects:
     url: https://katbjo.github.io/
     repo: https://github.com/katbjo/katbjo.github.io
     role: Built
+    period: "2019"
     stack: [HTML, CSS, GitHub Pages]
     image: /static/img/katbjo.github.io.webp
     image_alt: The katbjo.github.io landing page, captured 2026-09-16
