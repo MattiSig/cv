@@ -12,7 +12,7 @@
   <link rel="apple-touch-icon" href="/static/apple-touch-icon.png">
   <link rel="preload" href="/static/fonts/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/static/fonts/JetBrainsMono-Bold.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/static/css/app.css">
+  <link rel="stylesheet" href="{{asset "css/app.css"}}">
   <script>
     // Dark is the default; only an explicit choice flips to light. Runs before first paint.
     (function () {
@@ -26,6 +26,6 @@
     {{template "content" .}}
   </main>
   {{template "footer" .}}
-  <script src="/static/js/app.js" defer></script>
+  <script src="{{asset "js/app.js"}}" defer></script>
 </body>
 </html>

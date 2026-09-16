@@ -37,7 +37,7 @@ type Server struct {
 func New(ctx context.Context, cfg config.Config, log *slog.Logger) (http.Handler, error) {
 	templates, static := assets(cfg.Dev)
 
-	renderer, err := view.New(templates, view.Site{Name: cfg.SiteName, URL: cfg.SiteURL}, cfg.Dev)
+	renderer, err := view.New(templates, static, view.Site{Name: cfg.SiteName, URL: cfg.SiteURL}, cfg.Dev)
 	if err != nil {
 		return nil, err
 	}

@@ -3,6 +3,8 @@ package view
 
 import (
 	"bytes"
+	"crypto/sha256"
+	"encoding/hex"
 	"fmt"
 	"html/template"
 	"io/fs"
@@ -42,8 +44,10 @@ type Renderer struct {
 }
 
 // New parses all templates from fsys. When dev is true, templates are re-parsed on every render.
-func New(fsys fs.FS, site Site, dev bool) (*Renderer, error) {
+// static is the served asset tree; its file contents version the URLs the templates emit.
+func New(fsys, static fs.FS, site Site, dev bool) (*Renderer, error) {
 	r := &Renderer{fsys: fsys, site: site, dev: dev, funcs: funcs()}
+	r.funcs["asset"] = assetFunc(static, dev)
 	if err := r.load(); err != nil {
 		return nil, err
 	}
@@ -114,6 +118,34 @@ var nav = []NavItem{
 	{Href: "/work", Label: "Work"},
 	{Href: "/blog", Label: "Blog"},
 	{Href: "/cv", Label: "CV"},
+}
+
+// assetFunc returns a template helper that appends a short content hash to a static path,
+// e.g. asset "css/app.css" → "/static/css/app.css?v=1a2b3c4d". Cached forever means
+// cached until the file changes. In dev the hash is recomputed on every call.
+func assetFunc(static fs.FS, dev bool) func(string) string {
+	var mu sync.Mutex
+	cache := map[string]string{}
+	hash := func(p string) string {
+		b, err := fs.ReadFile(static, p)
+		if err != nil {
+			return "/static/" + p
+		}
+		sum := sha256.Sum256(b)
+		return "/static/" + p + "?v=" + hex.EncodeToString(sum[:4])
+	}
+	return func(p string) string {
+		if dev {
+			return hash(p)
+		}
+		mu.Lock()
+		defer mu.Unlock()
+		if v, ok := cache[p]; ok {
+			return v
+		}
+		cache[p] = hash(p)
+		return cache[p]
+	}
 }
 
 func funcs() template.FuncMap {
