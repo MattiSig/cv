@@ -28,13 +28,14 @@ type Project struct {
 	ImageHeight int    `yaml:"image_height,omitempty"`
 }
 
-// Content column width in px (80ch at 9px per cell) and the line unit; must match web/css/app.css.
+// Width of the row's content column in px (80ch minus the 12ch date column and 2ch gap, at 9px
+// per cell) and the line unit; must match web/css/app.css.
 const (
-	columnPx = 720
+	columnPx = 594
 	linePx   = 24
 )
 
-// ImageLines is the image height in grid lines when shown at full column width,
+// ImageLines is the image height in grid lines when shown at the row's content width,
 // so rasters end on the line grid.
 func (p Project) ImageLines() int {
 	w, h := p.ImageWidth, p.ImageHeight

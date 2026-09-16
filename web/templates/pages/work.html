@@ -15,11 +15,13 @@
         {{if .URL}}<a href="{{.URL}}" class="link" rel="noopener">{{.URL | trimScheme}}</a>{{end}}
         {{if .Repo}}{{if .URL}}<span class="text-muted"> · </span>{{end}}<a href="{{.Repo}}" class="link" rel="noopener">source</a>{{end}}
       </p>
+      {{if .Image}}
+      <a href="{{if .URL}}{{.URL}}{{else}}#{{.Slug}}{{end}}" class="mt-line block" rel="noopener">
+        <img src="{{.Image}}" alt="{{.ImageAlt}}" width="{{.ImageWidth}}" height="{{.ImageHeight}}" loading="lazy" class="frame specimen" style="--img-w: {{.ImageWidth}}; --img-h: {{.ImageHeight}}; --img-lines: {{.ImageLines}}">
+      </a>
+      {{end}}
     </div>
   </div>
-  {{if .Image}}
-  <img src="{{.Image}}" alt="{{.ImageAlt}}" width="{{.ImageWidth}}" height="{{.ImageHeight}}" loading="lazy" class="frame specimen mt-line" style="--img-w: {{.ImageWidth}}; --img-h: {{.ImageHeight}}; --img-lines: {{.ImageLines}}">
-  {{end}}
 </article>
 {{end}}
 {{end}}

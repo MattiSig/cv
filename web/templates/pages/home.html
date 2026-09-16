@@ -39,13 +39,13 @@
       <div>
         <h3><a href="{{if .URL}}{{.URL}}{{else}}/work#{{.Slug}}{{end}}" class="link" rel="noopener">{{.Name}}</a>{{if .Role}} <span class="font-normal text-muted">· {{.Role}}</span>{{end}}</h3>
         <p class="max-w-[64ch]">{{.Tagline}}</p>
+        {{if .Image}}
+        <a href="{{if .URL}}{{.URL}}{{else}}/work#{{.Slug}}{{end}}" class="mt-line block" rel="noopener">
+          <img src="{{.Image}}" alt="{{.ImageAlt}}" width="{{.ImageWidth}}" height="{{.ImageHeight}}" loading="lazy" class="frame specimen" style="--img-w: {{.ImageWidth}}; --img-h: {{.ImageHeight}}; --img-lines: {{.ImageLines}}">
+        </a>
+        {{end}}
       </div>
     </div>
-    {{if .Image}}
-    <a href="{{if .URL}}{{.URL}}{{else}}/work#{{.Slug}}{{end}}" class="mt-line block" rel="noopener">
-      <img src="{{.Image}}" alt="{{.ImageAlt}}" width="{{.ImageWidth}}" height="{{.ImageHeight}}" loading="lazy" class="frame specimen" style="--img-w: {{.ImageWidth}}; --img-h: {{.ImageHeight}}; --img-lines: {{.ImageLines}}">
-    </a>
-    {{end}}
   </article>
   {{end}}
   <p class="mt-line"><a href="/work" class="link">All work</a></p>
