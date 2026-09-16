@@ -48,6 +48,21 @@ projects:
     stack: [HTML, CSS, GitHub Pages]
     image: /static/img/katbjo.github.io.webp
     image_alt: The katbjo.github.io landing page, captured 2026-09-16
+  - slug: hnykill
+    name: Hnykill
+    tagline: A World Cup 2026 quiz for a family evening, built from my phone on holiday.
+    description: >-
+      An experiment in how far a Claude session on a phone could go. The quiz master mints a
+      quiz, everyone scans a QR code to join as a team, and scores run live, Kahoot-style. Three
+      difficulties, Kids, Adult and Nerd, so the kids could compete against the adults. In-memory,
+      no accounts, one Go binary. English, Icelandic, and Swedish.
+    url: https://hnykill-production.up.railway.app
+    repo: https://github.com/MattiSig/hnykill
+    role: Side project
+    period: "2026"
+    stack: [Go, html/template, Tailwind, Railway]
+    image: /static/img/hnykill.webp
+    image_alt: The Hnykill start page, captured 2026-09-16
   # - slug: example
   #   name: Example
   #   tagline: One line.
