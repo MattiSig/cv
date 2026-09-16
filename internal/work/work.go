@@ -20,9 +20,28 @@ type Project struct {
 	Period      string   `yaml:"period,omitempty"`
 	Stack       []string `yaml:"stack,omitempty"`
 	Featured    bool     `yaml:"featured,omitempty"`
-	// Image is a static path to a 1200x750 screenshot; ImageAlt describes it.
-	Image    string `yaml:"image,omitempty"`
-	ImageAlt string `yaml:"image_alt,omitempty"`
+	// Image is a static path to a screenshot; ImageAlt describes it. Width and Height are the
+	// raster's pixel size (default 1200x750) so the template can keep its aspect on narrow screens.
+	Image       string `yaml:"image,omitempty"`
+	ImageAlt    string `yaml:"image_alt,omitempty"`
+	ImageWidth  int    `yaml:"image_width,omitempty"`
+	ImageHeight int    `yaml:"image_height,omitempty"`
+}
+
+// Content column width in px (80ch at 9px per cell) and the line unit; must match web/css/app.css.
+const (
+	columnPx = 720
+	linePx   = 24
+)
+
+// ImageLines is the image height in grid lines when shown at full column width,
+// so rasters end on the line grid.
+func (p Project) ImageLines() int {
+	w, h := p.ImageWidth, p.ImageHeight
+	if w <= 0 || h <= 0 {
+		w, h = 1200, 750
+	}
+	return int(float64(columnPx)*float64(h)/float64(w)/linePx + 0.5)
 }
 
 // Load reads the project list.
@@ -37,9 +56,16 @@ func Load(path string) ([]Project, error) {
 	if err := yaml.Unmarshal(src, &doc); err != nil {
 		return nil, fmt.Errorf("work: parse %s: %w", path, err)
 	}
-	for i, p := range doc.Projects {
+	for i := range doc.Projects {
+		p := &doc.Projects[i]
 		if p.Slug == "" || p.Name == "" {
 			return nil, fmt.Errorf("work: %s: project %d needs slug and name", path, i)
+		}
+		if p.ImageWidth == 0 {
+			p.ImageWidth = 1200
+		}
+		if p.ImageHeight == 0 {
+			p.ImageHeight = 750
 		}
 	}
 	return doc.Projects, nil

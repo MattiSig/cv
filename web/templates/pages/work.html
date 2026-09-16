@@ -18,7 +18,7 @@
     </div>
   </div>
   {{if .Image}}
-  <img src="{{.Image}}" alt="{{.ImageAlt}}" width="1200" height="750" loading="lazy" class="frame mt-line aspect-[8/5] w-full object-cover object-top sm:aspect-auto sm:h-[calc(var(--line)*19)]">
+  <img src="{{.Image}}" alt="{{.ImageAlt}}" width="{{.ImageWidth}}" height="{{.ImageHeight}}" loading="lazy" class="frame specimen mt-line" style="--img-w: {{.ImageWidth}}; --img-h: {{.ImageHeight}}; --img-lines: {{.ImageLines}}">
   {{end}}
 </article>
 {{end}}

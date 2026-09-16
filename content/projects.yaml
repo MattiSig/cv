@@ -13,8 +13,31 @@ projects:
     period: 2026 – now
     stack: [Go, TypeScript, Postgres, Railway]
     featured: true
-    image: /static/img/snaelda/snaelda-io.webp
-    image_alt: The snaelda.io landing page, captured 2026-09-16
+    image: /static/img/snaelda/snaelda-og.webp
+    image_alt: Snælda. Your website, spun up in minutes.
+    image_width: 1200
+    image_height: 630
+  - slug: cabin-thingvellir
+    name: Cabin Thingvellir
+    tagline: A lakeside cabin in Þingvellir National Park, Iceland, with its own site.
+    description: >-
+      Marketing and photo site for a two-bedroom lakeside cabin in the national park. I wrote it
+      and host it.
+    url: https://cabin-thingvellir.com
+    role: Built and host
+    stack: [Next.js, Railway]
+    image: /static/img/cabin-thingvellir.com.webp
+    image_alt: The cabin-thingvellir.com landing page, captured 2026-09-16
+  - slug: thssarch
+    name: Þórunn Sigurrós, architect
+    tagline: Portfolio site for an Icelandic architect.
+    description: >-
+      Project galleries of architecture and illustration work. I wrote it and host it.
+    url: https://thssarch.com
+    role: Built and host
+    stack: [Next.js, Vercel]
+    image: /static/img/thssarch.com.webp
+    image_alt: The thssarch.com landing page, captured 2026-09-16
   # - slug: example
   #   name: Example
   #   tagline: One line.
