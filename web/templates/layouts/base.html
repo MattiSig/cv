@@ -5,6 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{if .Title}}{{.Title}} · {{end}}{{.Site.Name}}</title>
   {{if .Description}}<meta name="description" content="{{.Description}}">{{end}}
+  <meta name="author" content="{{.Site.Name}}">
+  {{if .Meta.NoIndex}}<meta name="robots" content="noindex, nofollow">{{else}}<link rel="canonical" href="{{.Canonical}}">{{end}}
+  <meta property="og:site_name" content="{{.Site.Name}}">
+  <meta property="og:type" content="{{.OGType}}">
+  <meta property="og:title" content="{{if .Title}}{{.Title}}{{else}}{{.Site.Name}}{{end}}">
+  {{if .Description}}<meta property="og:description" content="{{.Description}}">{{end}}
+  <meta property="og:url" content="{{.Canonical}}">
+  <meta property="og:image" content="{{.ShareImage}}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="en_GB">
+  {{if not .Meta.Published.IsZero}}<meta property="article:published_time" content="{{rfc3339 .Meta.Published}}">{{end}}
+  {{range .Meta.Tags}}<meta property="article:tag" content="{{.}}">{{end}}
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{if .Title}}{{.Title}}{{else}}{{.Site.Name}}{{end}}">
+  {{if .Description}}<meta name="twitter:description" content="{{.Description}}">{{end}}
+  <meta name="twitter:image" content="{{.ShareImage}}">
+  <link rel="alternate" type="application/rss+xml" title="{{.Site.Name}} · Writing" href="/feed.xml">
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+  <link rel="manifest" href="/static/manifest.webmanifest">
   <meta name="color-scheme" content="dark light">
   <meta name="theme-color" content="#121316">
   <link rel="icon" href="/static/favicon-32.png" sizes="32x32" type="image/png">
@@ -26,6 +46,7 @@
     {{template "content" .}}
   </main>
   {{template "footer" .}}
+  {{if .Meta.JSONLD}}<script type="application/ld+json">{{jsonld .Meta.JSONLD}}</script>{{end}}
   <script src="{{asset "js/app.js"}}" defer></script>
 </body>
 </html>

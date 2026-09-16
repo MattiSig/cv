@@ -9,7 +9,7 @@
     <h1 class="display">{{.Data.Name}}</h1>
     <p class="text-muted">{{.Data.Title}}</p>
     <p class="mt-line">
-      {{if .Data.Location}}{{.Data.Location}}{{end}}{{if .Data.Email}}<span class="text-muted"> · </span><a href="mailto:{{.Data.Email}}" class="link">{{.Data.Email}}</a>{{end}}{{if .Data.Website}}<span class="text-muted"> · </span><a href="{{.Data.Website}}" class="link">{{.Data.Website | trimScheme}}</a>{{end}}{{range .Data.Links}}<span class="text-muted"> · </span><a href="{{.URL}}" class="link" rel="noopener">{{.Label | lower}}</a>{{end}}
+      {{if .Data.Location}}{{.Data.Location}}{{end}}{{if .Data.Email}}<span class="text-muted"> · </span><a href="mailto:{{.Data.Email}}" class="link">{{.Data.Email}}</a>{{end}}{{if .Data.Website}}<span class="text-muted"> · </span><a href="{{.Data.Website}}" class="link">{{.Data.Website | trimScheme}}</a>{{end}}{{range .Data.Links}}<span class="text-muted"> · </span><a href="{{.URL}}" class="link" rel="me noopener">{{.Label | lower}}</a>{{end}}
     </p>
   </header>
 

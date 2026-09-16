@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/mattisig/cv/internal/blog"
+	"github.com/mattisig/cv/internal/view"
 )
 
 // adminRoutes mounts the post editor behind HTTP basic auth and a same-origin check.
@@ -62,11 +63,11 @@ func (s *Server) adminPosts(w http.ResponseWriter, r *http.Request) error {
 	if err != nil {
 		return err
 	}
-	return s.render(w, r, http.StatusOK, "admin/posts", "Posts · Admin", "", map[string]any{"Posts": posts})
+	return s.renderMeta(w, r, http.StatusOK, "admin/posts", "Posts · Admin", "", view.Meta{NoIndex: true}, map[string]any{"Posts": posts})
 }
 
 func (s *Server) adminNew(w http.ResponseWriter, r *http.Request) error {
-	return s.render(w, r, http.StatusOK, "admin/edit", "New post · Admin", "", map[string]any{
+	return s.renderMeta(w, r, http.StatusOK, "admin/edit", "New post · Admin", "", view.Meta{NoIndex: true}, map[string]any{
 		"Post":  blog.Post{Date: time.Now(), Draft: true},
 		"IsNew": true,
 	})
@@ -77,7 +78,7 @@ func (s *Server) adminEdit(w http.ResponseWriter, r *http.Request) error {
 	if err != nil {
 		return err
 	}
-	return s.render(w, r, http.StatusOK, "admin/edit", "Edit post · Admin", "", map[string]any{
+	return s.renderMeta(w, r, http.StatusOK, "admin/edit", "Edit post · Admin", "", view.Meta{NoIndex: true}, map[string]any{
 		"Post":  post,
 		"IsNew": false,
 	})

@@ -90,6 +90,10 @@ func (s *Server) routes(static fs.FS) http.Handler {
 	mux.Handle("GET /blog/{slug}", s.handle(s.blogPost))
 	mux.Handle("GET /cv", s.handle(s.resume))
 	mux.Handle("GET /cv.pdf", s.handle(s.resumePDF))
+	mux.Handle("GET /sitemap.xml", s.handle(s.sitemap))
+	mux.Handle("GET /feed.xml", s.handle(s.rssFeed))
+	mux.Handle("GET /robots.txt", s.handle(s.robots))
+	mux.Handle("GET /llms.txt", s.handle(s.llms))
 
 	if s.cfg.AdminEnabled() {
 		mux.Handle("/admin/", s.adminRoutes())

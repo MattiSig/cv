@@ -5,6 +5,7 @@ import (
 	"bytes"
 	"crypto/sha256"
 	"encoding/hex"
+	"encoding/json"
 	"fmt"
 	"html/template"
 	"io/fs"
@@ -21,15 +22,52 @@ type Site struct {
 	Year int
 }
 
+// Meta carries what search engines, social cards, and answer engines read.
+type Meta struct {
+	// Type is the Open Graph type: "website" (default), "article", or "profile".
+	Type string
+	// Image is an absolute URL for the share card; empty falls back to the site default.
+	Image string
+	// Published and Tags apply to articles.
+	Published time.Time
+	Tags      []string
+	// JSONLD is marshalled into a script tag when non-nil.
+	JSONLD any
+	// NoIndex keeps a page out of search results (admin, errors).
+	NoIndex bool
+}
+
 // Page is the envelope handed to every template.
 type Page struct {
 	Site        Site
 	Title       string
 	Description string
-	// Path is the request path, used for nav highlighting.
+	// Path is the request path, used for nav highlighting and the canonical URL.
 	Path string
+	Meta Meta
 	// Data is page-specific.
 	Data any
+}
+
+// Canonical is the absolute URL of the page.
+func (p Page) Canonical() string {
+	return strings.TrimSuffix(p.Site.URL, "/") + p.Path
+}
+
+// ShareImage is the absolute URL of the Open Graph image.
+func (p Page) ShareImage() string {
+	if p.Meta.Image != "" {
+		return p.Meta.Image
+	}
+	return strings.TrimSuffix(p.Site.URL, "/") + "/static/og.png"
+}
+
+// OGType is the Open Graph type with its default applied.
+func (p Page) OGType() string {
+	if p.Meta.Type == "" {
+		return "website"
+	}
+	return p.Meta.Type
 }
 
 // Renderer parses each page under pages/ together with the base layout and partials.
@@ -150,6 +188,16 @@ func assetFunc(static fs.FS, dev bool) func(string) string {
 
 func funcs() template.FuncMap {
 	return template.FuncMap{
+		// jsonld marshals structured data for a <script type="application/ld+json"> block.
+		// encoding/json escapes <, >, and & so the output cannot break out of the script.
+		"jsonld": func(v any) (template.JS, error) {
+			b, err := json.Marshal(v)
+			if err != nil {
+				return "", err
+			}
+			return template.JS(b), nil //nolint:gosec // json.Marshal output is script-safe
+		},
+		"rfc3339":   func(t time.Time) string { return t.Format(time.RFC3339) },
 		"navItems":  func() []NavItem { return nav },
 		"date":      func(t time.Time) string { return t.Format("2 January 2006") },
 		"isoDate":   func(t time.Time) string { return t.Format("2006-01-02") },

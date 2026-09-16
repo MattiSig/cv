@@ -1,0 +1,12 @@
+{
+  "name": "Matthías Sigurbjörnsson",
+  "short_name": "mattisig",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#121316",
+  "theme_color": "#121316",
+  "icons": [
+    { "src": "/static/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/static/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
