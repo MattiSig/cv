@@ -1,0 +1,147 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-16T00:00:00Z",
+  "title": "Design System: mattisig",
+  "extensions": {
+    "colorMeta": {
+      "ground": { "role": "neutral", "displayName": "Ground", "canonical": "oklch(18.7% 0.006 271.1)", "tonalRamp": ["#0a0b0e", "#202125", "#393a3e", "#545559", "#707175", "#8e8f93", "#bcbdc2", "#edeef3"] },
+      "ink": { "role": "neutral", "displayName": "Ink", "canonical": "oklch(92.2% 0.008 91.5)", "tonalRamp": ["#0c0b07", "#23221d", "#3c3a36", "#575550", "#73716c", "#918f8a", "#bfbeb8", "#f0eee8"] },
+      "muted": { "role": "neutral", "displayName": "Muted", "canonical": "oklch(65.7% 0.012 269.5)", "tonalRamp": ["#090b10", "#1f2128", "#383a41", "#52555c", "#6f7179", "#8c8f97", "#babec6", "#ebeef7"] },
+      "rule": { "role": "neutral", "displayName": "Rule", "canonical": "oklch(30.1% 0.012 264.4)", "tonalRamp": ["#090b10", "#1f2227", "#373b41", "#52555c", "#6e7279", "#8c8f97", "#babec5", "#eaeff7"] },
+      "gold": { "role": "primary", "displayName": "Thread Gold", "canonical": "oklch(76.1% 0.116 80.0)", "tonalRamp": ["#220000", "#3d1500", "#593000", "#764c00", "#946800", "#b4862f", "#e5b562", "#ffe692"] },
+      "ground-light": { "role": "neutral", "displayName": "Ground (light)", "canonical": "oklch(98.4% 0.004 106.5)", "tonalRamp": ["#0b0b09", "#222220", "#3b3b38", "#555553", "#72726f", "#8f8f8d", "#bebebb", "#efefec"] },
+      "ink-light": { "role": "neutral", "displayName": "Ink (light)", "canonical": "oklch(22.2% 0.002 106.6)", "tonalRamp": ["#0b0b0a", "#222221", "#3b3b39", "#555554", "#727270", "#8f8f8e", "#bebebc", "#eeeeed"] },
+      "muted-light": { "role": "neutral", "displayName": "Muted (light)", "canonical": "oklch(49.3% 0.010 271.2)", "tonalRamp": ["#0a0b0f", "#202126", "#383a40", "#53555b", "#6f7177", "#8d8f95", "#bbbdc4", "#eceef5"] },
+      "rule-light": { "role": "neutral", "displayName": "Rule (light)", "canonical": "oklch(87.9% 0.010 93.6)", "tonalRamp": ["#0c0b07", "#23221c", "#3c3a35", "#57554f", "#73726b", "#918f89", "#c0beb7", "#f0eee7"] },
+      "gold-light": { "role": "primary", "displayName": "Burnt Gold (light)", "canonical": "oklch(51.9% 0.104 76.2)", "tonalRamp": ["#210000", "#3c1500", "#583000", "#754b00", "#94681d", "#b38640", "#e4b56f", "#ffe69e"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "The person's name on the home page and CV header. Two grid lines. 24px under 40rem." },
+      "title": { "displayName": "Title", "purpose": "Page and post titles. Two grid lines. 20px under 40rem." },
+      "heading": { "displayName": "Heading", "purpose": "Every other h1-h3 and section heading. Body size, bold." },
+      "body": { "displayName": "Body", "purpose": "Everything else. Tabular numerals on. 64ch measure for paragraphs, 80ch column." }
+    },
+    "shadows": [],
+    "motion": [
+      { "name": "ease-out-expo", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "The only easing. Used for the dated row's date colour and title underline colour, 120ms. Nothing else transitions." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "40rem" }
+    ],
+    "print": {
+      "palette": { "bg": "#fff", "fg": "#111", "muted": "#555", "rule": "#bbb", "accent": "#111", "accent-fg": "#fff" },
+      "fontSize": "10.5pt",
+      "pageMargin": "16mm",
+      "hidden": ".print-hidden",
+      "hrefAfterExternalLinks": ".cv a[href^=\"http\"]"
+    },
+    "theming": {
+      "default": "dark",
+      "override": "html.light",
+      "storageKey": "theme",
+      "transition": "none"
+    }
+  },
+  "components": [
+    {
+      "name": "Content Link",
+      "kind": "custom",
+      "refersTo": "link",
+      "description": "Gold text with a 45% gold underline; underline goes solid on hover. Every in-content link.",
+      "html": "<a href=\"#\" class=\"ds-link\">Read the CV</a>",
+      "css": ".ds-link { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 15px; line-height: 24px; color: var(--accent, #d8a955); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; text-decoration-color: color-mix(in srgb, var(--accent, #d8a955) 45%, transparent); } .ds-link:hover { text-decoration-color: var(--accent, #d8a955); } .ds-link:focus-visible { outline: 1px solid var(--accent, #d8a955); outline-offset: 2px; }"
+    },
+    {
+      "name": "Nav Link",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Ink text, no underline at rest; underline on hover, gold underline on the current page.",
+      "html": "<nav class=\"ds-nav\"><a href=\"#\" class=\"ds-nav-link ds-nav-brand\">mattisig</a><span class=\"ds-nav-items\"><a href=\"#\" class=\"ds-nav-link\">Work</a><a href=\"#\" class=\"ds-nav-link\" aria-current=\"page\">Blog</a><a href=\"#\" class=\"ds-nav-link\">CV</a><button type=\"button\" class=\"ds-nav-link ds-nav-toggle\">light mode</button></span></nav>",
+      "css": ".ds-nav { display: flex; justify-content: space-between; align-items: center; gap: 2ch; padding: 12px 2ch; border-bottom: 1px solid var(--rule, #2b2e34); font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 15px; line-height: 24px; } .ds-nav-items { display: flex; gap: 3ch; } .ds-nav-link { color: var(--fg, #e7e5df); text-decoration: none; background: none; border: 0; padding: 0; font: inherit; cursor: pointer; } .ds-nav-brand { font-weight: 700; } .ds-nav-link:hover, .ds-nav-link[aria-current=\"page\"] { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; } .ds-nav-link[aria-current=\"page\"] { text-decoration-color: var(--accent, #d8a955); } .ds-nav-toggle { color: var(--muted, #8e9199); } .ds-nav-toggle:hover { color: var(--fg, #e7e5df); }"
+    },
+    {
+      "name": "Dated Row",
+      "kind": "custom",
+      "refersTo": "row-date",
+      "description": "The signature list item: 12ch muted date, 2ch gap, title. On hover or focus the date turns gold and the title underlines over 120ms; the site's only animation.",
+      "html": "<a href=\"#\" class=\"ds-row\"><time class=\"ds-row-date\">2026-09-16</time><span><span class=\"ds-row-title\">Hello, world</span> <span class=\"ds-row-muted\">(medium)</span></span></a>",
+      "css": ".ds-row { display: grid; grid-template-columns: 12ch 1fr; column-gap: 2ch; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 15px; line-height: 24px; font-variant-numeric: tabular-nums; color: var(--fg, #e7e5df); text-decoration: none; } .ds-row-date { color: var(--muted, #8e9199); transition: color 120ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-row-title { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; text-decoration-color: transparent; transition: text-decoration-color 120ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-row-muted { color: var(--muted, #8e9199); } .ds-row:hover .ds-row-date, .ds-row:focus-visible .ds-row-date { color: var(--accent, #d8a955); } .ds-row:hover .ds-row-title, .ds-row:focus-visible .ds-row-title { text-decoration-color: var(--accent, #d8a955); } .ds-row:focus-visible { outline: 1px solid var(--accent, #d8a955); outline-offset: 2px; } @media (max-width: 40rem) { .ds-row { grid-template-columns: 1fr; } }"
+    },
+    {
+      "name": "Button",
+      "kind": "button",
+      "refersTo": "button",
+      "description": "Square, 1px ink border, 1.5 lines tall, lowercase word. Inverts to ink fill on hover.",
+      "html": "<button type=\"button\" class=\"ds-btn\">print</button>",
+      "css": ".ds-btn { display: inline-flex; align-items: center; height: 36px; line-height: 24px; padding: 0 2ch; border: 1px solid var(--fg, #e7e5df); border-radius: 0; background: transparent; color: var(--fg, #e7e5df); font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 15px; text-decoration: none; cursor: pointer; } .ds-btn:hover { background: var(--fg, #e7e5df); color: var(--bg, #121316); } .ds-btn:focus-visible { outline: 1px solid var(--accent, #d8a955); outline-offset: 2px; }"
+    },
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Ink fill, ground text. Hover goes gold. Used for the admin's save.",
+      "html": "<button type=\"submit\" class=\"ds-btn-primary\">save</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; height: 36px; line-height: 24px; padding: 0 2ch; border: 1px solid var(--fg, #e7e5df); border-radius: 0; background: var(--fg, #e7e5df); color: var(--bg, #121316); font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 15px; cursor: pointer; } .ds-btn-primary:hover { background: var(--accent, #d8a955); border-color: var(--accent, #d8a955); color: var(--accent-fg, #121316); } .ds-btn-primary:focus-visible { outline: 1px solid var(--accent, #d8a955); outline-offset: 2px; }"
+    },
+    {
+      "name": "Field",
+      "kind": "input",
+      "refersTo": "field",
+      "description": "Muted label on the line above; 1px rule border, ground fill, 1.5 lines tall. Border turns gold on focus.",
+      "html": "<label class=\"ds-field-label\"><span class=\"ds-field-caption\">title</span><input class=\"ds-field\" value=\"Hello, world\"></label>",
+      "css": ".ds-field-label { display: block; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 15px; line-height: 24px; color: var(--fg, #e7e5df); } .ds-field-caption { display: block; color: var(--muted, #8e9199); } .ds-field { display: block; width: 100%; height: 36px; padding: 0 1ch; border: 1px solid var(--rule, #2b2e34); border-radius: 0; background: var(--bg, #121316); color: var(--fg, #e7e5df); font: inherit; line-height: 24px; caret-color: var(--accent, #d8a955); } .ds-field:focus { border-color: var(--accent, #d8a955); outline: none; }"
+    },
+    {
+      "name": "Frame",
+      "kind": "card",
+      "refersTo": "frame",
+      "description": "The only container: a 1px rule around a raster, height on a line multiple, no radius, no shadow.",
+      "html": "<div class=\"ds-frame\" role=\"img\" aria-label=\"Portrait, 16ch by 6 lines\"></div>",
+      "css": ".ds-frame { width: 16ch; height: 144px; border: 1px solid var(--rule, #2b2e34); border-radius: 0; background: var(--bg, #121316); box-shadow: none; }"
+    },
+    {
+      "name": "Section Divider",
+      "kind": "custom",
+      "refersTo": "heading",
+      "description": "Two lines of space, a 1px rule, one line, then a bold body-size heading. How every section begins.",
+      "html": "<section class=\"ds-section\"><h2 class=\"ds-section-heading\">Writing</h2><p class=\"ds-section-body\">Rows follow one line below.</p></section>",
+      "css": ".ds-section { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--rule, #2b2e34); font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 15px; line-height: 24px; color: var(--fg, #e7e5df); } .ds-section-heading { margin: 0; font-size: 15px; line-height: 24px; font-weight: 700; } .ds-section-body { margin: 24px 0 0; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Keep It Boring",
+    "overview": "The site is a single character grid. Text is the interface; the only ornament is the 1px rule. JetBrains Mono sets every glyph, at one body size, on a 24px line that every vertical measure is a multiple of. Horizontal measures are counted in characters. The page reads like a well-kept plain-text file that happens to be served over HTTP, and that plainness is the argument: the build is the portfolio.\n\nThe canon is The Monospace Web, taken deliberately and at full fidelity. There is no hero, no card trio, no metrics strip. Content is arranged as dated rows (date  title), separated by rules, with a single thread-gold accent reserved for content links, focus, and the row hover. Dark is the default; light is an explicit choice that flips the token set and nothing else.",
+    "keyCharacteristics": [
+      "One typeface (JetBrains Mono), one body size (15px), one line height (24px)",
+      "Vertical rhythm in 24px lines; horizontal rhythm in ch",
+      "Near-black ground, warm off-white ink, muted grey, 1px rules, one gold",
+      "Rules instead of ornament: no shadows, no gradients, no icons, no radius (except 2px on inline code)",
+      "One motion moment (dated rows); the theme flip is instant",
+      "Controls are words, in lowercase"
+    ],
+    "rules": [
+      { "name": "The One Gold Rule", "body": "Gold means \"you can follow this\". It appears on content links, focus, and the hovered row, and nowhere else. Nav links are Ink, not Gold; their current page is marked by an underline whose colour is Gold, not by gold text.", "section": "colors" },
+      { "name": "The Six Tokens Rule", "body": "Every colour on the site is one of the six roles. Tints are made by mixing a token with transparent (color-mix), never by introducing a new hex: the link underline at rest is Gold at 45%, inline code background is Ink at 8%.", "section": "colors" },
+      { "name": "The One Size Rule", "body": "Below Display and Title there is one size. Emphasis is weight (700) or colour (Muted), never a smaller or larger font. No uppercase, no letter-spaced labels, no kickers.", "section": "typography" },
+      { "name": "The Two-Line Rule", "body": "Large type sits on a 48px line, exactly two grid lines, so a Display or Title never breaks the rhythm of what follows.", "section": "typography" },
+      { "name": "The Literal Grid Rule", "body": "Vertical values are written as var(--line) multiples in the source (mt-line, calc(var(--line)*2), h-[calc(var(--line)*19)]), never as ad-hoc pixel or rem values. If a measurement is not a whole number of lines, it is off-grid and wrong.", "section": "layout" },
+      { "name": "The Rule-Only Rule", "body": "If something needs to read as separate from its surroundings, it gets a 1px border in the Rule colour. It does not get a shadow, a background tint, or a blur.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do write every vertical measure as a multiple of var(--line) and every horizontal measure in ch.",
+      "Do reserve Gold for links, focus, and the row hover. Use Ink and Muted for everything else.",
+      "Do add new list-like content as a .row with a 12ch date column, so it inherits the one hover.",
+      "Do frame every raster in a 1px Rule and give it a height that is a whole number of lines.",
+      "Do keep controls as lowercase words (print, save, light mode).",
+      "Do keep headings at body size and bold; use Display or Title only for the page's own name."
+    ],
+    "donts": [
+      "Don't add shadows, gradients, background tints, or blur; the Rule is the only separator.",
+      "Don't round corners. The 2px on inline code is the one exception and stays there.",
+      "Don't introduce icons, glyphs, or an icon font; nav, buttons, and links are text.",
+      "Don't add a second font size below Title, a second typeface, uppercase labels, or letter-spaced kickers.",
+      "Don't animate anything other than .row-date colour and .row-title underline; the theme flip stays instant.",
+      "Don't use raw pixel or rem spacing utilities (mt-4, p-6); use mt-line, pt-line, py-half, and calc(var(--line)*n)."
+    ]
+  }
+}

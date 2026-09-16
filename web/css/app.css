@@ -105,7 +105,6 @@
     .display { font-size: 24px; }
     .title { font-size: 20px; }
   }
-  .section-heading { font-weight: 700; }
   .frame { border: 1px solid var(--rule); }
 
   .field {
@@ -118,7 +117,7 @@
     color: var(--fg);
     line-height: var(--line);
   }
-  textarea.field { height: auto; padding-block: var(--half); resize: vertical; }
+  textarea.field { height: auto; padding-block: calc(var(--line) / 2); resize: vertical; }
   .field:focus { border-color: var(--accent); outline: none; }
   .btn {
     display: inline-flex;
