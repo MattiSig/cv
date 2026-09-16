@@ -6,7 +6,7 @@ TAILWIND := bin/tailwindcss
 CSS_IN   := web/css/app.css
 CSS_OUT  := web/static/css/app.css
 
-.PHONY: help dev run build css css-watch test vet fmt tidy docker clean
+.PHONY: help dev run build css css-watch test vet fmt tidy docker clean validate
 
 help: ## Show targets
 > @grep -E '^[a-zA-Z_-]+:.*?## ' $(MAKEFILE_LIST) | awk 'BEGIN{FS=":.*?## "}{printf "  %-12s %s\n", $$1, $$2}'
@@ -35,6 +35,14 @@ $(TAILWIND):
 
 test: ## Run tests
 > go test ./...
+
+validate: $(TAILWIND) ## Lint (gofmt, vet), test, and build; run before pushing
+> @unformatted=$$(gofmt -l .); if [ -n "$$unformatted" ]; then echo "gofmt: needs formatting:"; echo "$$unformatted"; exit 1; fi
+> go vet ./...
+> go test ./...
+> $(TAILWIND) -i $(CSS_IN) -o $(CSS_OUT) --minify
+> CGO_ENABLED=0 go build -o /dev/null ./cmd/server
+> @echo "validate: ok"
 
 vet: ## Vet
 > go vet ./...
