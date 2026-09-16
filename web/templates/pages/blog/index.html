@@ -6,9 +6,9 @@
 <ul class="mt-10 divide-y divide-zinc-200 dark:divide-zinc-800">
   {{range .Data.Posts}}
   <li class="py-5">
-    <a href="/blog/{{.Slug}}" class="group block">
+    <a href="{{.URL}}" class="group block"{{if .External}} rel="noopener"{{end}}>
       <div class="flex items-baseline justify-between gap-4">
-        <h2 class="text-lg font-medium group-hover:underline">{{.Title}}</h2>
+        <h2 class="text-lg font-medium group-hover:underline">{{.Title}}{{if .Source}} <span class="ml-1 rounded-full border border-zinc-200 px-2 py-0.5 text-xs font-normal text-zinc-500 dark:border-zinc-700 dark:text-zinc-400">{{.Source}} ↗</span>{{end}}</h2>
         <time datetime="{{isoDate .Date}}" class="shrink-0 text-sm text-zinc-500 dark:text-zinc-400">{{date .Date}}</time>
       </div>
       {{if .Summary}}<p class="mt-1 text-zinc-600 dark:text-zinc-400">{{.Summary}}</p>{{end}}

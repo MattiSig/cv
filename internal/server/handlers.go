@@ -57,12 +57,24 @@ func (s *Server) render(w http.ResponseWriter, r *http.Request, status int, page
 	})
 }
 
+// allPosts merges published local posts with external feed items, newest first.
+func (s *Server) allPosts(r *http.Request) ([]blog.Post, error) {
+	local, err := s.posts.List(r.Context())
+	if err != nil {
+		return nil, err
+	}
+	var external []blog.Post
+	if s.feed != nil {
+		external = s.feed.Posts()
+	}
+	return blog.Merge(blog.Published(local), external), nil
+}
+
 func (s *Server) home(w http.ResponseWriter, r *http.Request) error {
-	posts, err := s.posts.List(r.Context())
+	published, err := s.allPosts(r)
 	if err != nil {
 		return err
 	}
-	published := blog.Published(posts)
 	if len(published) > 3 {
 		published = published[:3]
 	}
@@ -80,12 +92,12 @@ func (s *Server) work(w http.ResponseWriter, r *http.Request) error {
 }
 
 func (s *Server) blogIndex(w http.ResponseWriter, r *http.Request) error {
-	posts, err := s.posts.List(r.Context())
+	posts, err := s.allPosts(r)
 	if err != nil {
 		return err
 	}
 	return s.render(w, r, http.StatusOK, "blog/index", "Blog", "Notes on building software", map[string]any{
-		"Posts": blog.Published(posts),
+		"Posts": posts,
 	})
 }
 

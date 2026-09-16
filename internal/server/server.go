@@ -2,12 +2,14 @@
 package server
 
 import (
+	"context"
 	"fmt"
 	"io/fs"
 	"log/slog"
 	"net/http"
 	"os"
 	"path/filepath"
+	"time"
 
 	"github.com/mattisig/cv/internal/blog"
 	"github.com/mattisig/cv/internal/config"
@@ -23,12 +25,14 @@ type Server struct {
 	log      *slog.Logger
 	view     *view.Renderer
 	posts    blog.Store
+	feed     *blog.Feed // nil when no external feed is configured
 	cv       cv.CV
 	projects []work.Project
 }
 
 // New loads content and templates and returns the routed, middleware-wrapped handler.
-func New(cfg config.Config, log *slog.Logger) (http.Handler, error) {
+// Background work (feed refresh) runs until ctx is cancelled.
+func New(ctx context.Context, cfg config.Config, log *slog.Logger) (http.Handler, error) {
 	templates, static := assets(cfg.Dev)
 
 	renderer, err := view.New(templates, view.Site{Name: cfg.SiteName, URL: cfg.SiteURL}, cfg.Dev)
@@ -49,6 +53,10 @@ func New(cfg config.Config, log *slog.Logger) (http.Handler, error) {
 	}
 
 	s := &Server{cfg: cfg, log: log, view: renderer, posts: posts, cv: resume, projects: projects}
+	if cfg.MediumFeedURL != "" {
+		s.feed = blog.NewFeed(cfg.MediumFeedURL, "Medium", log)
+		go s.feed.Run(ctx, time.Hour)
+	}
 	return s.routes(static), nil
 }
 

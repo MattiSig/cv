@@ -26,7 +26,10 @@ func main() {
 }
 
 func run(cfg config.Config, log *slog.Logger) error {
-	handler, err := server.New(cfg, log)
+	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
+	defer stop()
+
+	handler, err := server.New(ctx, cfg, log)
 	if err != nil {
 		return err
 	}
@@ -39,9 +42,6 @@ func run(cfg config.Config, log *slog.Logger) error {
 		WriteTimeout:      30 * time.Second,
 		IdleTimeout:       60 * time.Second,
 	}
-
-	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
-	defer stop()
 
 	errc := make(chan error, 1)
 	go func() {

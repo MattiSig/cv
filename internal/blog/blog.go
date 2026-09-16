@@ -21,7 +21,7 @@ import (
 // ErrNotFound is returned when a slug does not exist.
 var ErrNotFound = errors.New("blog: post not found")
 
-// Post is a single article.
+// Post is a single article, either local (Body/HTML set) or external (External set).
 type Post struct {
 	Slug    string
 	Title   string
@@ -31,6 +31,18 @@ type Post struct {
 	Draft   bool
 	Body    string
 	HTML    template.HTML
+	// External is the canonical URL of a post hosted elsewhere (e.g. Medium); such posts link out.
+	External string
+	// Source labels where an external post lives, e.g. "Medium". Empty for local posts.
+	Source string
+}
+
+// URL is the path or link a post should be reached at.
+func (p Post) URL() string {
+	if p.External != "" {
+		return p.External
+	}
+	return "/blog/" + p.Slug
 }
 
 // Store is the persistence boundary. The filesystem implementation is the default;

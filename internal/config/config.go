@@ -23,6 +23,8 @@ type Config struct {
 	// SiteName and SiteURL feed page metadata.
 	SiteName string
 	SiteURL  string
+	// MediumFeedURL is an RSS feed whose items are listed among the blog posts. Empty disables it.
+	MediumFeedURL string
 }
 
 // FromEnv builds a Config from environment variables with local-dev defaults.
@@ -35,6 +37,7 @@ func FromEnv() Config {
 		AdminPassword: os.Getenv("ADMIN_PASSWORD"),
 		SiteName:      env("SITE_NAME", "Matthías Sigurbjörnsson"),
 		SiteURL:       env("SITE_URL", "http://localhost:8080"),
+		MediumFeedURL: env("MEDIUM_FEED_URL", "https://medium.com/feed/@mattisigur"),
 	}
 	c.PostsDir = env("POSTS_DIR", filepath.Join(c.ContentDir, "posts"))
 	return c
