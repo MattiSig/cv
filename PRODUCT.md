@@ -48,7 +48,7 @@ Hands-on engineering leader who still writes production code. The owner is CTO a
 
 ## Evidence on Hand
 
-- Snælda (https://snaelda.io): the owner's product. Screenshots and a logo exist (owner-confirmed; not yet in this repo, logo at `~/personal/snaelda/logo.png`). The description in `content/projects.yaml` is derived from Snælda's own PRODUCT.md.
+- Snælda (https://snaelda.io): the owner's side project. The owner is fully employed and wants it presented as work, not as a founder story (stated 2026-09-16). Screenshots and a logo exist (owner-confirmed; not yet in this repo, logo at `~/personal/snaelda/logo.png`). The description in `content/projects.yaml` is derived from Snælda's own PRODUCT.md.
 - Two more sites the owner wrote and hosts (owner-stated 2026-09-16): cabin-thingvellir.com (Next.js on Railway; a lakeside cabin in Þingvellir National Park) and thssarch.com (Next.js on Vercel; portfolio of the architect Þórunn Sigurrós). Captures in `web/static/img/`.
 - A headshot exists (owner-confirmed, not yet in this repo).
 - Existing writing exists to seed the blog (owner-confirmed, not yet in this repo). `content/posts/hello-world.md` is a placeholder. The owner also writes on Medium as @mattisigur under the "Mossy Code" publication. Two public posts as of 2026-09-16, both Node.js tutorials from August 2024: "What is a server? Let's make a tiny server from scratch!" and "Yet another — getting started with nodejs, Part 1". Whether to import them, link out, or set canonical URLs is undecided.

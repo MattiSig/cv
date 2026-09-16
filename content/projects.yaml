@@ -2,14 +2,12 @@
 projects:
   - slug: snaelda
     name: Snælda
-    tagline: Spin up a small business website from a prompt, or re-spin the one you already have.
+    tagline: A website machine for small businesses.
     description: >-
-      Snælda turns a prompt, or an existing site's URL, into a designed, fast, SEO-friendly website
-      for solo operators and small owner-led businesses, with a lightweight builder, preview,
-      publishing, and custom domains. Content is generated natively in the user's language,
-      Icelandic first, with the Nordics as the go-to-market focus.
+      Turns a prompt, or an existing site's URL, into a designed, fast website with a lightweight
+      builder, publishing, and custom domains. Icelandic first. A side project I build and run.
     url: https://snaelda.io
-    role: Founder
+    role: Side project
     period: 2026 – now
     stack: [Go, TypeScript, Postgres, Railway]
     featured: true
