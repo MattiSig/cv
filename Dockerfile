@@ -1,5 +1,3 @@
-# syntax=docker/dockerfile:1
-
 FROM golang:1.26 AS build
 ARG TAILWIND_VERSION=v4.3.3
 WORKDIR /src
@@ -9,12 +7,11 @@ RUN curl -fsSL -o /usr/local/bin/tailwindcss \
     && chmod +x /usr/local/bin/tailwindcss
 
 COPY go.mod go.sum ./
-RUN --mount=type=cache,target=/go/pkg/mod go mod download
+RUN go mod download
 
 COPY . .
 RUN tailwindcss -i web/css/app.css -o web/static/css/app.css --minify
-RUN --mount=type=cache,target=/go/pkg/mod --mount=type=cache,target=/root/.cache/go-build \
-    CGO_ENABLED=0 go build -trimpath -ldflags="-s -w" -o /out/server ./cmd/server
+RUN CGO_ENABLED=0 go build -trimpath -ldflags="-s -w" -o /out/server ./cmd/server
 
 FROM gcr.io/distroless/static-debian12:nonroot
 WORKDIR /app
