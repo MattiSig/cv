@@ -1,0 +1,6 @@
+bin/
+web/static/css/app.css
+.env
+# Impeccable ships a native binary and a local hook manifest; neither belongs in git.
+.claude/skills/impeccable/scripts/bin/
+.claude/settings.local.json

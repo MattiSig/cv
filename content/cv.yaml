@@ -1,0 +1,49 @@
+# Source of truth for /cv. Everything marked TODO is a placeholder to replace.
+name: Matthías Sigurbjörnsson
+title: Senior developer & CTO
+summary: >-
+  TODO — two or three sentences on what you build, how you lead, and what you care about.
+location: Göteborg, Sweden
+email: mattisigur@gmail.com
+website: https://mattisig.dev
+links:
+  - label: GitHub
+    url: https://github.com/MattiSig
+  - label: LinkedIn
+    url: https://www.linkedin.com/in/mattisig/
+
+experience:
+  - company: Precisely
+    role: TODO — title
+    location: Göteborg, Sweden
+    start: TODO
+    summary: TODO — what the company does and what you own there.
+    highlights:
+      - TODO — outcome-oriented bullet
+      - TODO — outcome-oriented bullet
+    stack: [Go, TypeScript]
+  - company: TODO — previous company
+    role: TODO — title
+    start: TODO
+    end: TODO
+    highlights:
+      - TODO
+
+education:
+  - school: Háskóli Íslands (University of Iceland)
+    degree: TODO — programme
+    start: "2013"
+    end: "2017"
+
+skills:
+  - label: Languages
+    items: [Go, TypeScript, SQL]
+  - label: Platforms
+    items: [GCP, Railway, Docker, Postgres]
+  - label: Leadership
+    items: [TODO]
+
+awards:
+  - title: Code for Course challenge winner, Digi.me DataHack
+    year: "2017"
+    notes: VaxAbroad, an iOS app surfacing vaccination information for travellers.

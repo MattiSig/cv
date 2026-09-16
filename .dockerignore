@@ -1,0 +1,7 @@
+.git
+.claude
+bin
+web/static/css/app.css
+.env
+*.md
+!content/**/*.md
