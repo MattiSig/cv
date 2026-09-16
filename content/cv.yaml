@@ -45,6 +45,8 @@ experience:
     highlights:
       - With the team, merged the frontends and built a shared API layer for two separate HR-tech products.
       - Tech lead for Bakvörður, owning the product's engineering as a B2B SaaS.
+      - Secured tenant isolation across the multi-tenant platform.
+      - Refactored broken workflows and led the rewrite of the platform's next iteration.
     stack: [TypeScript]
 
 education:
