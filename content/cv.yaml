@@ -34,12 +34,18 @@ experience:
     highlights:
       - TODO — outcome-oriented bullet
     stack: [Go, TypeScript]
-  - company: TODO — previous company
-    role: TODO — title
-    start: TODO
-    end: TODO
+  - company: Advania
+    role: Full Stack Developer, then Tech Lead
+    location: Iceland
+    start: "2018"
+    end: "2021"
+    summary: >-
+      Joined in a junior full-stack role with a frontend focus, and went on to lead the engineering of
+      Bakvörður, an HR-tech time reporting and compliance B2B SaaS.
     highlights:
-      - TODO
+      - With the team, merged the frontends and built a shared API layer for two separate HR-tech products.
+      - Tech lead for Bakvörður, owning the product's engineering as a B2B SaaS.
+    stack: [TypeScript]
 
 education:
   - school: Háskóli Íslands (University of Iceland)
