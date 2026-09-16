@@ -1,28 +1,25 @@
 {{define "content"}}
-<h1 class="text-3xl font-semibold tracking-tight">Work</h1>
-<p class="mt-2 text-zinc-600 dark:text-zinc-400">Things I've built or led.</p>
+<h1 class="title pt-line">Work</h1>
+<p class="text-muted">Things I have built or led.</p>
 
-<ul class="mt-10 space-y-12">
-  {{range .Data.Projects}}
-  <li id="{{.Slug}}" class="scroll-mt-20">
-    <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-      <h2 class="text-xl font-medium">
-        {{if .URL}}<a href="{{.URL}}" class="hover:underline" rel="noopener">{{.Name}}</a>{{else}}{{.Name}}{{end}}
-      </h2>
-      <span class="text-sm text-zinc-500 dark:text-zinc-400">{{if .Role}}{{.Role}}{{end}}{{if and .Role .Period}} · {{end}}{{.Period}}</span>
+{{range .Data.Projects}}
+<article id="{{.Slug}}" class="mt-[calc(var(--line)*2)] scroll-mt-line border-t border-rule pt-line">
+  <div class="row">
+    <span class="row-date">{{.Period}}</span>
+    <div>
+      <h2>{{if .URL}}<a href="{{.URL}}" class="link" rel="noopener">{{.Name}}</a>{{else}}{{.Name}}{{end}}{{if .Role}} <span class="font-normal text-muted">· {{.Role}}</span>{{end}}</h2>
+      <p>{{.Tagline}}</p>
+      <p class="mt-line max-w-[64ch] text-muted">{{.Description}}</p>
+      {{if .Stack}}<p class="mt-line text-muted">{{join .Stack " · "}}</p>{{end}}
+      <p class="mt-line">
+        {{if .URL}}<a href="{{.URL}}" class="link" rel="noopener">{{.URL | trimScheme}}</a>{{end}}
+        {{if .Repo}}{{if .URL}}<span class="text-muted"> · </span>{{end}}<a href="{{.Repo}}" class="link" rel="noopener">source</a>{{end}}
+      </p>
     </div>
-    <p class="mt-1 font-medium text-zinc-700 dark:text-zinc-300">{{.Tagline}}</p>
-    <p class="mt-3 max-w-prose text-zinc-600 dark:text-zinc-400">{{.Description}}</p>
-    {{if .Stack}}
-    <ul class="mt-4 flex flex-wrap gap-2" aria-label="Stack">
-      {{range .Stack}}<li class="rounded-full border border-zinc-200 px-2.5 py-0.5 text-xs text-zinc-600 dark:border-zinc-700 dark:text-zinc-400">{{.}}</li>{{end}}
-    </ul>
-    {{end}}
-    <div class="mt-4 flex gap-4 text-sm">
-      {{if .URL}}<a href="{{.URL}}" class="underline underline-offset-4" rel="noopener">Visit</a>{{end}}
-      {{if .Repo}}<a href="{{.Repo}}" class="underline underline-offset-4" rel="noopener">Source</a>{{end}}
-    </div>
-  </li>
+  </div>
+  {{if .Image}}
+  <img src="{{.Image}}" alt="{{.ImageAlt}}" width="1200" height="750" loading="lazy" class="frame mt-line aspect-[8/5] w-full object-cover object-top">
   {{end}}
-</ul>
+</article>
+{{end}}
 {{end}}

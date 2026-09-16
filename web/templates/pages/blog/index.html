@@ -1,22 +1,22 @@
 {{define "content"}}
-<h1 class="text-3xl font-semibold tracking-tight">Blog</h1>
-<p class="mt-2 text-zinc-600 dark:text-zinc-400">Notes on building software, teams, and products.</p>
+<h1 class="title pt-line">Writing</h1>
+<p class="text-muted">Notes on building software, teams, and products.</p>
 
 {{if .Data.Posts}}
-<ul class="mt-10 divide-y divide-zinc-200 dark:divide-zinc-800">
+<ol class="mt-[calc(var(--line)*2)] border-t border-rule pt-line">
   {{range .Data.Posts}}
-  <li class="py-5">
-    <a href="{{.URL}}" class="group block"{{if .External}} rel="noopener"{{end}}>
-      <div class="flex items-baseline justify-between gap-4">
-        <h2 class="text-lg font-medium group-hover:underline">{{.Title}}{{if .Source}} <span class="ml-1 rounded-full border border-zinc-200 px-2 py-0.5 text-xs font-normal text-zinc-500 dark:border-zinc-700 dark:text-zinc-400">{{.Source}} ↗</span>{{end}}</h2>
-        <time datetime="{{isoDate .Date}}" class="shrink-0 text-sm text-zinc-500 dark:text-zinc-400">{{date .Date}}</time>
-      </div>
-      {{if .Summary}}<p class="mt-1 text-zinc-600 dark:text-zinc-400">{{.Summary}}</p>{{end}}
+  <li class="mb-line">
+    <a href="{{.URL}}" class="row"{{if .External}} rel="noopener"{{end}}>
+      <time datetime="{{isoDate .Date}}" class="row-date">{{isoDate .Date}}</time>
+      <span>
+        <span class="row-title">{{.Title}}</span>{{if .Source}} <span class="text-muted">({{.Source | lower}})</span>{{end}}
+        {{if .Summary}}<span class="block text-muted">{{.Summary}}</span>{{end}}
+      </span>
     </a>
   </li>
   {{end}}
-</ul>
+</ol>
 {{else}}
-<p class="mt-10 text-zinc-500 dark:text-zinc-400">Nothing published yet.</p>
+<p class="mt-[calc(var(--line)*2)] text-muted">Nothing published yet.</p>
 {{end}}
 {{end}}

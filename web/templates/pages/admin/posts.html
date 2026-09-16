@@ -1,34 +1,23 @@
 {{define "content"}}
-<div class="flex items-center justify-between gap-4">
-  <h1 class="text-2xl font-semibold tracking-tight">Posts</h1>
-  <a href="/admin/posts/new" class="rounded-md bg-zinc-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-zinc-700 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-200">New post</a>
+<div class="flex items-center justify-between gap-[2ch] pt-line">
+  <h1 class="title">Posts</h1>
+  <a href="/admin/posts/new" class="btn btn-primary">new post</a>
 </div>
 
 {{if .Data.Posts}}
-<table class="mt-8 w-full text-sm">
-  <thead class="text-left text-zinc-500 dark:text-zinc-400">
-    <tr>
-      <th class="py-2 font-medium">Title</th>
-      <th class="py-2 font-medium">Date</th>
-      <th class="py-2 font-medium">Status</th>
-      <th class="py-2"></th>
-    </tr>
-  </thead>
-  <tbody class="divide-y divide-zinc-200 dark:divide-zinc-800">
-    {{range .Data.Posts}}
-    <tr>
-      <td class="py-3 pr-4"><a href="/admin/posts/{{.Slug}}/edit" class="font-medium hover:underline">{{.Title}}</a><br><span class="text-zinc-500 dark:text-zinc-400">/blog/{{.Slug}}</span></td>
-      <td class="py-3 pr-4 whitespace-nowrap">{{isoDate .Date}}</td>
-      <td class="py-3 pr-4">{{if .Draft}}<span class="rounded-full bg-amber-100 px-2 py-0.5 text-xs text-amber-800 dark:bg-amber-900/40 dark:text-amber-200">Draft</span>{{else}}<span class="rounded-full bg-emerald-100 px-2 py-0.5 text-xs text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-200">Published</span>{{end}}</td>
-      <td class="py-3 text-right whitespace-nowrap">
-        {{if not .Draft}}<a href="/blog/{{.Slug}}" class="mr-3 underline underline-offset-4">View</a>{{end}}
-        <a href="/admin/posts/{{.Slug}}/edit" class="underline underline-offset-4">Edit</a>
-      </td>
-    </tr>
-    {{end}}
-  </tbody>
-</table>
+<ol class="mt-line border-t border-rule pt-line">
+  {{range .Data.Posts}}
+  <li class="row mb-line">
+    <span class="row-date">{{isoDate .Date}}</span>
+    <span>
+      <a href="/admin/posts/{{.Slug}}/edit" class="link">{{.Title}}</a>
+      {{if .Draft}}<span class="text-muted">(draft)</span>{{else}}<span class="text-muted">· <a href="/blog/{{.Slug}}" class="link">view</a></span>{{end}}
+      <span class="block text-muted">/blog/{{.Slug}}</span>
+    </span>
+  </li>
+  {{end}}
+</ol>
 {{else}}
-<p class="mt-8 text-zinc-500 dark:text-zinc-400">No posts yet.</p>
+<p class="mt-line text-muted">No posts yet.</p>
 {{end}}
 {{end}}

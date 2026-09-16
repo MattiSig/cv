@@ -1,8 +1,8 @@
 {{define "footer"}}
-<footer class="print:hidden border-t border-zinc-200 dark:border-zinc-800">
-  <div class="max-w-3xl mx-auto px-4 sm:px-6 py-6 text-sm text-zinc-500 dark:text-zinc-400 flex items-center justify-between">
+<footer class="print-hidden border-t border-rule">
+  <div class="mx-auto flex w-full max-w-[84ch] flex-wrap justify-between gap-x-[4ch] gap-y-0 px-[2ch] py-line text-muted">
     <span>© {{.Site.Year}} {{.Site.Name}}</span>
-    <span>Go · html/template · Tailwind</span>
+    <span>go · html/template · tailwind · <a href="https://github.com/MattiSig/cv" class="link" rel="noopener">source</a></span>
   </div>
 </footer>
 {{end}}

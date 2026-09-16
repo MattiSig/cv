@@ -10,9 +10,11 @@ projects:
       Icelandic first, with the Nordics as the go-to-market focus.
     url: https://snaelda.io
     role: Founder
-    period: 2026 – present
+    period: 2026 – now
     stack: [Go, TypeScript, Postgres, Railway]
     featured: true
+    image: /static/img/snaelda/cafe.webp
+    image_alt: A sample café website drafted by Snælda, in Icelandic
   # - slug: example
   #   name: Example
   #   tagline: One line.

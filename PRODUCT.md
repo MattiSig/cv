@@ -42,7 +42,9 @@ Hands-on engineering leader: a CTO / head-of-engineering who still writes produc
 
 - Name: Matthías Sigurbjörnsson. Based in Göteborg, Sweden.
 - Go advocacy is a durable identity fact and may be stated on the site.
-- Voice is not yet confirmed; nothing binding is recorded.
+- Visual direction, pinned by the owner on 2026-09-16: "keep it boring". Monospace for all text (JetBrains Mono, self-hosted, OFL), dark by default with a light option, focus on content and structure. The craft bar is The Monospace Web (owickstrom.github.io/the-monospace-web): everything on a character grid, rules instead of ornament. This is the category standard taken deliberately; do not re-open it or smuggle in expressive typography.
+- Founder photo and Snælda specimens are reused from snaelda.io with the owner's consent (`web/static/img/`).
+- Voice is not yet confirmed beyond the founder copy on snaelda.io, which is plain, first-person, and unhurried.
 
 ## Evidence on Hand
 

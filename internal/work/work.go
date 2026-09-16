@@ -20,6 +20,9 @@ type Project struct {
 	Period      string   `yaml:"period,omitempty"`
 	Stack       []string `yaml:"stack,omitempty"`
 	Featured    bool     `yaml:"featured,omitempty"`
+	// Image is a static path to a 1200x750 screenshot; ImageAlt describes it.
+	Image    string `yaml:"image,omitempty"`
+	ImageAlt string `yaml:"image_alt,omitempty"`
 }
 
 // Load reads the project list.

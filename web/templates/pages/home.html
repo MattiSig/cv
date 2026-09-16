@@ -1,50 +1,54 @@
 {{define "content"}}
-<section class="py-8">
-  <h1 class="text-4xl sm:text-5xl font-semibold tracking-tight">{{.Data.CV.Name}}</h1>
-  <p class="mt-3 text-xl text-zinc-600 dark:text-zinc-400">{{.Data.CV.Title}}</p>
-  <p class="mt-6 max-w-prose text-zinc-700 dark:text-zinc-300">{{.Data.CV.Summary}}</p>
-  <div class="mt-8 flex flex-wrap gap-3">
-    <a href="/work" class="rounded-md bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-700 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-200">See my work</a>
-    <a href="/cv" class="rounded-md border border-zinc-300 px-4 py-2 text-sm font-medium hover:bg-zinc-100 dark:border-zinc-700 dark:hover:bg-zinc-800">Read my CV</a>
+<section class="grid gap-x-[4ch] pt-[calc(var(--line)*2)] sm:grid-cols-[1fr_16ch]">
+  <div>
+    <h1 class="display">{{.Data.CV.Name}}</h1>
+    <p class="text-muted">{{.Data.CV.Title}} · {{.Data.CV.Location}}</p>
+    <p class="mt-line max-w-[64ch]">{{.Data.CV.Summary}}</p>
+    <p class="mt-line">
+      <a href="/cv" class="link">Read the CV</a><span class="text-muted"> · </span><a href="mailto:{{.Data.CV.Email}}" class="link">{{.Data.CV.Email}}</a>
+    </p>
   </div>
+  <img src="/static/img/founder-400.jpg" alt="{{.Data.CV.Name}}" width="400" height="400"
+       class="frame order-first mb-line h-[calc(var(--line)*6)] w-[calc(var(--line)*6)] object-cover sm:order-none sm:mb-0 sm:h-[16ch] sm:w-[16ch]">
 </section>
 
-{{if .Data.Featured}}
-<section class="py-8">
-  <h2 class="text-sm font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">Selected work</h2>
-  <ul class="mt-4 divide-y divide-zinc-200 dark:divide-zinc-800">
-    {{range .Data.Featured}}
-    <li class="py-5">
-      <a href="{{if .URL}}{{.URL}}{{else}}/work#{{.Slug}}{{end}}" class="group block">
-        <div class="flex items-baseline justify-between gap-4">
-          <h3 class="font-medium group-hover:underline">{{.Name}}</h3>
-          {{if .Period}}<span class="text-sm text-zinc-500 dark:text-zinc-400">{{.Period}}</span>{{end}}
-        </div>
-        <p class="mt-1 text-zinc-600 dark:text-zinc-400">{{.Tagline}}</p>
+{{if .Data.Posts}}
+<section class="mt-[calc(var(--line)*2)] border-t border-rule pt-line">
+  <h2 class="section-heading">Writing</h2>
+  <ol class="mt-line">
+    {{range .Data.Posts}}
+    <li class="mb-line sm:mb-0">
+      <a href="{{.URL}}" class="row"{{if .External}} rel="noopener"{{end}}>
+        <time datetime="{{isoDate .Date}}" class="row-date">{{isoDate .Date}}</time>
+        <span><span class="row-title">{{.Title}}</span>{{if .Source}} <span class="text-muted">({{.Source | lower}})</span>{{end}}</span>
       </a>
     </li>
     {{end}}
-  </ul>
+  </ol>
+  <p class="mt-line"><a href="/blog" class="link">All writing</a></p>
 </section>
 {{end}}
 
-{{if .Data.Posts}}
-<section class="py-8">
-  <h2 class="text-sm font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">Latest writing</h2>
-  <ul class="mt-4 divide-y divide-zinc-200 dark:divide-zinc-800">
-    {{range .Data.Posts}}
-    <li class="py-4">
-      <a href="{{.URL}}" class="group block"{{if .External}} rel="noopener"{{end}}>
-        <div class="flex items-baseline justify-between gap-4">
-          <h3 class="font-medium group-hover:underline">{{.Title}}{{if .Source}} <span class="ml-1 rounded-full border border-zinc-200 px-2 py-0.5 text-xs font-normal text-zinc-500 dark:border-zinc-700 dark:text-zinc-400">{{.Source}} ↗</span>{{end}}</h3>
-          <time datetime="{{isoDate .Date}}" class="text-sm text-zinc-500 dark:text-zinc-400">{{date .Date}}</time>
-        </div>
-        {{if .Summary}}<p class="mt-1 text-zinc-600 dark:text-zinc-400">{{.Summary}}</p>{{end}}
-      </a>
-    </li>
+{{if .Data.Featured}}
+<section class="mt-[calc(var(--line)*2)] border-t border-rule pt-line">
+  <h2 class="section-heading">Work</h2>
+  {{range .Data.Featured}}
+  <article class="mt-line">
+    <div class="row">
+      <span class="row-date">{{.Period}}</span>
+      <div>
+        <h3><a href="{{if .URL}}{{.URL}}{{else}}/work#{{.Slug}}{{end}}" class="link" rel="noopener">{{.Name}}</a>{{if .Role}} <span class="font-normal text-muted">· {{.Role}}</span>{{end}}</h3>
+        <p class="max-w-[64ch]">{{.Tagline}}</p>
+      </div>
+    </div>
+    {{if .Image}}
+    <a href="{{if .URL}}{{.URL}}{{else}}/work#{{.Slug}}{{end}}" class="mt-line block" rel="noopener">
+      <img src="{{.Image}}" alt="{{.ImageAlt}}" width="1200" height="750" loading="lazy" class="frame aspect-[8/5] w-full object-cover object-top">
+    </a>
     {{end}}
-  </ul>
-  <a href="/blog" class="mt-4 inline-block text-sm text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white">All posts →</a>
+  </article>
+  {{end}}
+  <p class="mt-line"><a href="/work" class="link">All work</a></p>
 </section>
 {{end}}
 {{end}}

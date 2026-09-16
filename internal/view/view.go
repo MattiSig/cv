@@ -123,5 +123,10 @@ func funcs() template.FuncMap {
 		"isoDate":   func(t time.Time) string { return t.Format("2006-01-02") },
 		"join":      strings.Join,
 		"hasPrefix": strings.HasPrefix,
+		"lower":     strings.ToLower,
+		"trimScheme": func(u string) string {
+			u = strings.TrimPrefix(strings.TrimPrefix(u, "https://"), "http://")
+			return strings.TrimSuffix(u, "/")
+		},
 	}
 }
