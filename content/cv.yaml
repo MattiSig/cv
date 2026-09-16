@@ -4,7 +4,7 @@ title: Senior developer & CTO
 summary: >-
   Engineering leader who still ships. I write Go by conviction, lead teams that own what they
   build, and run Snælda, a website machine for small businesses that do not want a web project.
-  Currently at Precisely in Göteborg.
+  Currently tech lead at Ventla International AB in Göteborg.
 location: Göteborg, Sweden
 email: mattisigur@gmail.com
 # website: https://mattisig.dev   # re-enable once the domain is registered
@@ -15,13 +15,23 @@ links:
     url: https://www.linkedin.com/in/mattisig/
 
 experience:
+  - company: Ventla International AB
+    role: Tech Lead
+    location: Göteborg, Sweden
+    start: "2026"
+    summary: Leading a revision of the entire platform.
+    highlights:
+      - Cut hosting cost in half by optimising compute spend and simplifying the stack.
+      - Moved from microservices to a lean monolith with outposts where they matter, with fewer moving parts.
+      - Work closely with the CEO and CFO to shape a new product strategy.
+    stack: [Go, TypeScript, GCP]
   - company: Precisely
     role: TODO — title
     location: Göteborg, Sweden
     start: TODO
-    summary: TODO — what the company does and what you own there.
+    end: "2026"
+    summary: TODO — what the company does and what you owned there.
     highlights:
-      - TODO — outcome-oriented bullet
       - TODO — outcome-oriented bullet
     stack: [Go, TypeScript]
   - company: TODO — previous company
