@@ -10,3 +10,22 @@ func TestImageLines(t *testing.T) {
 		}
 	}
 }
+
+func TestSort(t *testing.T) {
+	ps := []Project{
+		{Slug: "b", Period: "2024"},
+		{Slug: "e"},
+		{Slug: "c", Period: "2023"},
+		{Slug: "d", Period: "2026"},
+		{Slug: "a", Period: "2026 – now"},
+		{Slug: "f", Period: "2019"},
+	}
+	Sort(ps)
+	got := ""
+	for _, p := range ps {
+		got += p.Slug
+	}
+	if got != "adbcfe" {
+		t.Fatalf("order %q, want %q", got, "adbcfe")
+	}
+}

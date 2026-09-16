@@ -4,6 +4,10 @@ package work
 import (
 	"fmt"
 	"os"
+	"regexp"
+	"sort"
+	"strconv"
+	"strings"
 
 	"gopkg.in/yaml.v3"
 )
@@ -69,7 +73,34 @@ func Load(path string) ([]Project, error) {
 			p.ImageHeight = 750
 		}
 	}
+	Sort(doc.Projects)
 	return doc.Projects, nil
+}
+
+var yearRe = regexp.MustCompile(`\d{4}`)
+
+// StartYear parses the first four-digit year in Period; zero when absent.
+func (p Project) StartYear() int {
+	y, _ := strconv.Atoi(yearRe.FindString(p.Period))
+	return y
+}
+
+// Ongoing reports whether Period ends in "now" or "present".
+func (p Project) Ongoing() bool {
+	s := strings.ToLower(p.Period)
+	return strings.HasSuffix(s, "now") || strings.HasSuffix(s, "present")
+}
+
+// Sort orders projects newest first: ongoing before finished within a year,
+// undated last, file order otherwise.
+func Sort(projects []Project) {
+	sort.SliceStable(projects, func(i, j int) bool {
+		a, b := projects[i], projects[j]
+		if a.StartYear() != b.StartYear() {
+			return a.StartYear() > b.StartYear()
+		}
+		return a.Ongoing() && !b.Ongoing()
+	})
 }
 
 // Featured returns only projects flagged for the landing page.
