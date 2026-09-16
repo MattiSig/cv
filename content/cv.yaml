@@ -20,7 +20,7 @@ experience:
     role: Tech Lead
     location: Göteborg, Sweden
     start: "2026"
-    summary: Leading a revision of the entire platform.
+    summary: Leading a revision of the platform.
     highlights:
       - Cut hosting cost in half by optimising compute spend and simplifying the stack.
       - Moved from microservices to a lean monolith with outposts where they matter, with fewer moving parts.
