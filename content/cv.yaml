@@ -26,14 +26,18 @@ experience:
       - Work closely with the CEO and CFO to shape a new product strategy.
     stack: [Go, TypeScript, GCP]
   - company: Precisely
-    role: TODO — title
+    role: Frontend Developer, then Full Stack Developer
     location: Göteborg, Sweden
-    start: TODO
+    start: "2021"
     end: "2026"
-    summary: TODO — what the company does and what you owned there.
+    summary: >-
+      Contract lifecycle management (CLM) platform. Joined on the frontend and worked full stack for the
+      last two years.
     highlights:
-      - TODO — outcome-oriented bullet
-    stack: [Go, TypeScript]
+      - Migrated the codebase from JavaScript to TypeScript.
+      - Led development of the larger features, including AI chat and AI reference discovery.
+      - Security work, including moving authentication to HttpOnly cookie tokens.
+    stack: [TypeScript, JavaScript]
   - company: Advania
     role: Full Stack Developer, then Tech Lead
     location: Iceland
