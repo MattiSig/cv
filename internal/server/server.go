@@ -14,6 +14,7 @@ import (
 	"github.com/mattisig/cv/internal/blog"
 	"github.com/mattisig/cv/internal/config"
 	"github.com/mattisig/cv/internal/cv"
+	"github.com/mattisig/cv/internal/cvpdf"
 	"github.com/mattisig/cv/internal/view"
 	"github.com/mattisig/cv/internal/work"
 	"github.com/mattisig/cv/web"
@@ -27,6 +28,7 @@ type Server struct {
 	posts    blog.Store
 	feed     *blog.Feed // nil when no external feed is configured
 	cv       cv.CV
+	cvPDF    []byte // rendered once at startup; the CV is static content
 	projects []work.Project
 }
 
@@ -52,7 +54,12 @@ func New(ctx context.Context, cfg config.Config, log *slog.Logger) (http.Handler
 		return nil, err
 	}
 
-	s := &Server{cfg: cfg, log: log, view: renderer, posts: posts, cv: resume, projects: projects}
+	pdfBytes, err := cvpdf.Render(resume)
+	if err != nil {
+		return nil, err
+	}
+
+	s := &Server{cfg: cfg, log: log, view: renderer, posts: posts, cv: resume, cvPDF: pdfBytes, projects: projects}
 	if cfg.MediumFeedURL != "" {
 		s.feed = blog.NewFeed(cfg.MediumFeedURL, "Medium", log)
 		go s.feed.Run(ctx, time.Hour)
@@ -82,6 +89,7 @@ func (s *Server) routes(static fs.FS) http.Handler {
 	mux.Handle("GET /blog", s.handle(s.blogIndex))
 	mux.Handle("GET /blog/{slug}", s.handle(s.blogPost))
 	mux.Handle("GET /cv", s.handle(s.resume))
+	mux.Handle("GET /cv.pdf", s.handle(s.resumePDF))
 
 	if s.cfg.AdminEnabled() {
 		mux.Handle("/admin/", s.adminRoutes())

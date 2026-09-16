@@ -7,3 +7,4 @@ web/static/css/app.css
 # Impeccable live-mode session state stays local.
 .impeccable/config.local.json
 .impeccable/live/inject-journal.json
+*.pdf

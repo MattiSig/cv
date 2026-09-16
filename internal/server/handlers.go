@@ -1,10 +1,14 @@
 package server
 
 import (
+	"bytes"
 	"errors"
 	"net/http"
+	"strings"
+	"time"
 
 	"github.com/mattisig/cv/internal/blog"
+	"github.com/mattisig/cv/internal/cvpdf"
 	"github.com/mattisig/cv/internal/view"
 	"github.com/mattisig/cv/internal/work"
 )
@@ -114,4 +118,26 @@ func (s *Server) blogPost(w http.ResponseWriter, r *http.Request) error {
 
 func (s *Server) resume(w http.ResponseWriter, r *http.Request) error {
 	return s.render(w, r, http.StatusOK, "cv", "CV", s.cv.Summary, s.cv)
+}
+
+func (s *Server) resumePDF(w http.ResponseWriter, r *http.Request) error {
+	pdf := s.cvPDF
+	if s.cfg.Dev { // re-render so content edits show without a restart
+		var err error
+		if pdf, err = cvpdf.Render(s.cv); err != nil {
+			return err
+		}
+	}
+	w.Header().Set("Content-Type", "application/pdf")
+	w.Header().Set("Content-Disposition", `inline; filename="`+pdfFilename(s.cv.Name)+`"`)
+	w.Header().Set("Cache-Control", "public, max-age=3600")
+	http.ServeContent(w, r, "", time.Time{}, bytes.NewReader(pdf))
+	return nil
+}
+
+// pdfFilename builds an ASCII-safe download name, e.g. "Matthias-Sigurbjornsson-CV.pdf".
+func pdfFilename(name string) string {
+	repl := strings.NewReplacer("í", "i", "ó", "o", "ö", "o", "á", "a", "é", "e", "ú", "u", "ý", "y", "þ", "th", "ð", "d", "æ", "ae", "Þ", "Th", "Ð", "D", "Æ", "Ae", "Í", "I", "Ó", "O", "Ö", "O", "Á", "A", "É", "E", "Ú", "U", "Ý", "Y")
+	ascii := repl.Replace(name)
+	return strings.ReplaceAll(ascii, " ", "-") + "-CV.pdf"
 }
