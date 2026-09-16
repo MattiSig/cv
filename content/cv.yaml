@@ -48,7 +48,8 @@ experience:
       - Secured tenant isolation across the multi-tenant platform.
       - Refactored broken workflows and led the rewrite of the platform's next iteration.
       - Built all CI/CD pipelines and moved the stack from Windows servers to Azure. One main workflow built the release and rolled it out through Octopus Deploy Tentacles on each server.
-    stack: [TypeScript, Azure, Octopus Deploy]
+      - Drove the migration from ASP.NET Web Forms towards .NET Core and React.
+    stack: [C#, ASP.NET Web Forms, .NET Core, React, TypeScript, Azure, Octopus Deploy]
 
 education:
   - school: Háskóli Íslands (University of Iceland)
