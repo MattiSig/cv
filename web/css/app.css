@@ -14,7 +14,7 @@
 
 /* One grid: the 24px line is the vertical unit, the character cell is the horizontal one. */
 :root {
-  --line: 1.5rem;
+  --line: 24px;
   --bg: #121316;
   --fg: #e7e5df;
   --muted: #8e9199;
@@ -42,8 +42,8 @@
   --color-accent-fg: var(--accent-fg);
   --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
   --font-sans: var(--font-mono);
-  --spacing-line: 1.5rem;
-  --spacing-half: 0.75rem;
+  --spacing-line: 24px;
+  --spacing-half: 12px;
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -76,7 +76,6 @@
     text-underline-offset: 3px;
     text-decoration-thickness: 1px;
     text-decoration-color: color-mix(in srgb, var(--accent) 45%, transparent);
-    transition: text-decoration-color 120ms var(--ease-out-expo);
   }
   .link:hover { text-decoration-color: var(--accent); }
 
@@ -94,17 +93,17 @@
   }
   .row-date { color: var(--muted); transition: color 120ms var(--ease-out-expo); }
   .row-title { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; text-decoration-color: transparent; transition: text-decoration-color 120ms var(--ease-out-expo); }
-  .row:hover .row-date, .row:focus-visible .row-date { color: var(--accent); }
-  .row:hover .row-title, .row:focus-visible .row-title { text-decoration-color: var(--accent); }
+  a.row:hover .row-date, a.row:focus-visible .row-date { color: var(--accent); }
+  a.row:hover .row-title, a.row:focus-visible .row-title { text-decoration-color: var(--accent); }
   @media (max-width: 40rem) {
     .row { grid-template-columns: 1fr; }
   }
 
-  .display { font-size: 2rem; line-height: 3rem; font-weight: 700; letter-spacing: -0.01em; }
-  .title { font-size: 1.6rem; line-height: 3rem; font-weight: 700; letter-spacing: -0.01em; }
+  .display { font-size: 32px; line-height: 48px; font-weight: 700; letter-spacing: -0.01em; }
+  .title { font-size: 24px; line-height: 48px; font-weight: 700; letter-spacing: -0.01em; }
   @media (max-width: 40rem) {
-    .display { font-size: 1.6rem; }
-    .title { font-size: 1.3rem; }
+    .display { font-size: 24px; }
+    .title { font-size: 20px; }
   }
   .section-heading { font-weight: 700; }
   .frame { border: 1px solid var(--rule); }
@@ -122,14 +121,14 @@
   textarea.field { height: auto; padding-block: var(--half); resize: vertical; }
   .field:focus { border-color: var(--accent); outline: none; }
   .btn {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
     height: calc(var(--line) * 1.5);
-    line-height: calc(var(--line) * 1.5 - 2px);
+    line-height: var(--line);
     padding: 0 2ch;
     border: 1px solid var(--fg);
     color: var(--fg);
     text-decoration: none;
-    transition: background 120ms var(--ease-out-expo), color 120ms var(--ease-out-expo);
   }
   .btn:hover { background: var(--fg); color: var(--bg); }
   .btn-primary { background: var(--fg); color: var(--bg); }
@@ -167,7 +166,7 @@
 .prose :where(a) { text-decoration-thickness: 1px; text-underline-offset: 3px; font-weight: inherit; }
 .prose :where(code):not(pre code) { font-weight: inherit; background: color-mix(in srgb, var(--fg) 8%, transparent); padding: 0 0.5ch; border-radius: 2px; }
 .prose :where(code)::before, .prose :where(code)::after { content: none; }
-.prose :where(pre) { border: 1px solid var(--rule); border-radius: 0; padding: calc(var(--line) / 2) 2ch; line-height: var(--line); font-size: 1rem; overflow-x: auto; }
+.prose :where(pre) { border: 1px solid var(--rule); border-radius: 0; padding: calc(var(--line) / 2 - 1px) 2ch; line-height: var(--line); font-size: 1rem; overflow-x: auto; }
 .prose :where(blockquote) { border-left: 1px solid var(--rule); padding-left: 2ch; font-style: normal; }
 .prose :where(blockquote p:first-of-type)::before, .prose :where(blockquote p:last-of-type)::after { content: none; }
 .prose :where(hr) { border-color: var(--rule); }
@@ -186,4 +185,6 @@
   html { font-size: 10.5pt; }
   .print-hidden { display: none !important; }
   a { color: inherit; text-decoration: none; }
+  /* Paper has no hover: print the address after every external link in the CV. */
+  .cv a[href^="http"]::after { content: " " attr(href); color: var(--muted); }
 }

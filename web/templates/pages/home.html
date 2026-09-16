@@ -9,7 +9,7 @@
     </p>
   </div>
   <img src="/static/img/founder-400.jpg" alt="{{.Data.CV.Name}}" width="400" height="400"
-       class="frame order-first mb-line h-[calc(var(--line)*6)] w-[calc(var(--line)*6)] object-cover sm:order-none sm:mb-0 sm:h-[16ch] sm:w-[16ch]">
+       class="frame order-first mb-line h-[calc(var(--line)*6)] w-[calc(var(--line)*6)] object-cover sm:order-none sm:mb-0 sm:h-[calc(var(--line)*6)] sm:w-[16ch]">
 </section>
 
 {{if .Data.Posts}}
@@ -43,7 +43,7 @@
     </div>
     {{if .Image}}
     <a href="{{if .URL}}{{.URL}}{{else}}/work#{{.Slug}}{{end}}" class="mt-line block" rel="noopener">
-      <img src="{{.Image}}" alt="{{.ImageAlt}}" width="1200" height="750" loading="lazy" class="frame aspect-[8/5] w-full object-cover object-top">
+      <img src="{{.Image}}" alt="{{.ImageAlt}}" width="1200" height="750" loading="lazy" class="frame aspect-[8/5] w-full object-cover object-top sm:aspect-auto sm:h-[calc(var(--line)*19)]">
     </a>
     {{end}}
   </article>

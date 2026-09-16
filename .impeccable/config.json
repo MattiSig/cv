@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "tight-leading",
+        "value": "*",
+        "files": [
+          "web/templates/layouts/base.html"
+        ],
+        "createdAt": "2026-09-16T09:20:53.147Z",
+        "reason": "False positive: base.html sets no line-height; computed body leading is 24px on 15px text (1.6x)."
+      }
+    ]
+  }
+}

@@ -1,9 +1,9 @@
 {{define "content"}}
 <article class="pt-line">
   <header>
-    <p class="text-muted"><time datetime="{{isoDate .Data.Date}}">{{isoDate .Data.Date}}</time>{{if .Data.Tags}} · {{join .Data.Tags ", "}}{{end}}</p>
     <h1 class="title">{{.Data.Title}}</h1>
-    {{if .Data.Summary}}<p class="text-muted">{{.Data.Summary}}</p>{{end}}
+    {{if .Data.Summary}}<p>{{.Data.Summary}}</p>{{end}}
+    <p class="text-muted"><time datetime="{{isoDate .Data.Date}}">{{isoDate .Data.Date}}</time>{{if .Data.Tags}} · {{join .Data.Tags ", "}}{{end}}</p>
   </header>
   <div class="prose mt-line border-t border-rule">
     {{.Data.HTML}}
