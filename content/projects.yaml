@@ -15,6 +15,19 @@ projects:
     image_alt: Snælda. Your website, spun up in minutes.
     image_width: 1200
     image_height: 630
+  - slug: ecodeling
+    name: Ecodeling
+    tagline: An interactive model of CPI indexation in a small open economy.
+    description: >-
+      A specification-first educational agent-based model inspired by Iceland. The published replay
+      follows the same simulated economy under nominal and CPI-indexed mortgage regimes, with
+      synchronized charts, household cohorts, ledger flows, and reproducibility metadata.
+    url: /work/ecodeling
+    repo: https://github.com/MattiSig/ecodeling
+    role: Research side project
+    period: 2026 – now
+    stack: [Python, Lit, TypeScript, FastAPI]
+    featured: true
   - slug: cabin-thingvellir
     name: Cabin Thingvellir
     tagline: A lakeside cabin in Þingvellir National Park, Iceland, with its own site.

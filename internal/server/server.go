@@ -86,6 +86,7 @@ func (s *Server) routes(static fs.FS) http.Handler {
 
 	mux.Handle("GET /{$}", s.handle(s.home))
 	mux.Handle("GET /work", s.handle(s.work))
+	mux.Handle("GET /work/ecodeling", s.handle(s.ecodeling))
 	mux.Handle("GET /blog", s.handle(s.blogIndex))
 	mux.Handle("GET /blog/{slug}", s.handle(s.blogPost))
 	mux.Handle("GET /cv", s.handle(s.resume))

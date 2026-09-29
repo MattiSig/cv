@@ -33,6 +33,7 @@
   <link rel="preload" href="/static/fonts/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/static/fonts/JetBrainsMono-Bold.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="{{asset "css/app.css"}}">
+  {{block "head" .}}{{end}}
   <script>
     // Dark is the default; only an explicit choice flips to light. Runs before first paint.
     (function () {
@@ -48,5 +49,6 @@
   {{template "footer" .}}
   {{if .Meta.JSONLD}}<script type="application/ld+json">{{jsonld .Meta.JSONLD}}</script>{{end}}
   <script src="{{asset "js/app.js"}}" defer></script>
+  {{block "scripts" .}}{{end}}
 </body>
 </html>

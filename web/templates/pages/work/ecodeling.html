@@ -1,0 +1,31 @@
+{{define "head"}}
+  <link rel="stylesheet" href="{{asset "ecodeling/ecodeling-experience.css"}}">
+{{end}}
+
+{{define "content"}}
+<header class="pt-line">
+  <p class="text-muted"><a href="/work" class="link">Work</a> / model</p>
+  <h1 class="title">{{.Data.Project.Name}}</h1>
+  <p>{{.Data.Project.Tagline}}</p>
+  <p class="mt-line max-w-[64ch] text-muted">{{.Data.Project.Description}}</p>
+  <p class="mt-line">
+    <span class="text-muted">{{join .Data.Project.Stack " · "}}</span>
+    <span class="text-muted"> · </span><a href="{{.Data.Project.Repo}}" class="link" rel="noopener">source</a>
+  </p>
+</header>
+
+<section class="model-window mt-[calc(var(--line)*2)]" aria-label="Interactive Ecodeling model replay">
+  <ecodeling-experience src="{{asset "ecodeling/canonical-v1.json.gz"}}">
+    <div slot="fallback" class="model-fallback">
+      <strong>Model replay unavailable.</strong>
+      <p>The published simulation could not be loaded. The source and reproducibility notes remain available above.</p>
+    </div>
+  </ecodeling-experience>
+</section>
+
+<p class="mt-line text-muted">Published replay · nominal and CPI-indexed mortgage regimes · all figures are simulated, not forecasts.</p>
+{{end}}
+
+{{define "scripts"}}
+  <script type="module" src="{{asset "ecodeling/ecodeling-experience.js"}}"></script>
+{{end}}

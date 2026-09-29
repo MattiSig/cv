@@ -29,3 +29,14 @@ func TestSort(t *testing.T) {
 		t.Fatalf("order %q, want %q", got, "adbcfe")
 	}
 }
+
+func TestFind(t *testing.T) {
+	projects := []Project{{Slug: "alpha", Name: "Alpha"}, {Slug: "ecodeling", Name: "Ecodeling"}}
+	project, ok := Find(projects, "ecodeling")
+	if !ok || project.Name != "Ecodeling" {
+		t.Fatalf("Find() = %#v, %v", project, ok)
+	}
+	if _, ok := Find(projects, "missing"); ok {
+		t.Fatal("Find() returned a missing project")
+	}
+}

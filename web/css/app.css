@@ -142,6 +142,19 @@
   .btn-primary { background: var(--fg); color: var(--bg); }
   .btn-primary:hover { background: var(--accent); border-color: var(--accent); color: var(--accent-fg); }
 
+  /* A wide instrument panel inside the site's narrow reading column. */
+  .model-window {
+    position: relative;
+    left: 50%;
+    width: min(96rem, calc(100vw - 2rem));
+    transform: translateX(-50%);
+    border: 1px solid var(--rule);
+    background: var(--rule);
+  }
+  .model-window ecodeling-experience { display: block; }
+  .model-fallback { padding: var(--line) 2ch; background: var(--bg); color: var(--fg); }
+  .model-fallback p { margin-top: var(--line); color: var(--muted); }
+
 }
 
 /* Article body on the same grid. Unlayered on purpose: the typography plugin ships its own

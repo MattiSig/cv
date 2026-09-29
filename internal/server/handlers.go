@@ -157,12 +157,33 @@ func (s *Server) work(w http.ResponseWriter, r *http.Request) error {
 		u := p.URL
 		if u == "" {
 			u = s.abs("/work#" + p.Slug)
+		} else if strings.HasPrefix(u, "/") {
+			u = s.abs(u)
 		}
 		items = append(items, map[string]any{"@type": "ListItem", "position": i + 1, "url": u, "name": p.Name})
 	}
 	meta := view.Meta{JSONLD: graph(map[string]any{"@type": "ItemList", "name": "Work", "itemListElement": items})}
 	return s.renderMeta(w, r, http.StatusOK, "work", "Work", "Projects I built or lead: "+projectNames(s.projects), meta, map[string]any{
 		"Projects": s.projects,
+	})
+}
+
+func (s *Server) ecodeling(w http.ResponseWriter, r *http.Request) error {
+	project, ok := work.Find(s.projects, "ecodeling")
+	if !ok {
+		return errNotFound
+	}
+	meta := view.Meta{JSONLD: graph(map[string]any{
+		"@type":               "SoftwareApplication",
+		"name":                project.Name,
+		"description":         project.Description,
+		"url":                 s.abs("/work/ecodeling"),
+		"codeRepository":      project.Repo,
+		"applicationCategory": "EducationalApplication",
+		"author":              map[string]any{"@id": s.abs("/#person")},
+	})}
+	return s.renderMeta(w, r, http.StatusOK, "work/ecodeling", project.Name, project.Tagline, meta, map[string]any{
+		"Project": project,
 	})
 }
 

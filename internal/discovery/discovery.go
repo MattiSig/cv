@@ -49,7 +49,7 @@ func Sitemap(s Site, posts []blog.Post) ([]byte, error) {
 	for _, path := range []string{"/", "/blog"} {
 		set.URLs = append(set.URLs, sitemapURL{Loc: s.abs(path), LastMod: lastmod})
 	}
-	for _, path := range []string{"/work", "/cv"} {
+	for _, path := range []string{"/work", "/work/ecodeling", "/cv"} {
 		set.URLs = append(set.URLs, sitemapURL{Loc: s.abs(path)})
 	}
 	for _, p := range posts {
@@ -184,6 +184,8 @@ func LLMs(s Site, c cv.CV, projects []work.Project, posts []blog.Post) []byte {
 			link := p.URL
 			if link == "" {
 				link = s.abs("/work#" + p.Slug)
+			} else if strings.HasPrefix(link, "/") {
+				link = s.abs(link)
 			}
 			fmt.Fprintf(&b, "- [%s](%s): %s", p.Name, link, p.Tagline)
 			if p.Period != "" {

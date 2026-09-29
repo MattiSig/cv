@@ -113,3 +113,13 @@ func Featured(projects []Project) []Project {
 	}
 	return out
 }
+
+// Find returns the project with slug, if present.
+func Find(projects []Project, slug string) (Project, bool) {
+	for _, project := range projects {
+		if project.Slug == slug {
+			return project, true
+		}
+	}
+	return Project{}, false
+}
